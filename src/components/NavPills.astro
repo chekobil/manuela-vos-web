@@ -1,0 +1,125 @@
+---
+interface Route {
+  text: string;
+  link: string;
+}
+export interface Props {
+	groups: Route[][];
+}
+const { groups } = Astro.props.frontmatter || Astro.props;
+const pills0 = groups[0]
+const pills1 = groups[1]
+import Logo from "./Logo.astro"
+import Icon from "./Icon.astro"
+// ESTO te da el path, quiero separar host / page / path
+const url = new URL(Astro.url)
+const currentPage = url.pathname.split("/")[1]
+---
+<nav class="nav">
+    <div class="logo-container" data-header-icon>
+        <Logo height={60} class="data-logo-color" />
+        <Logo height={50} logo="white" class="data-logo-white" />
+    </div>
+    <div class="pills" data-desktop-only >
+        { pills0.map( (route:Route) => {
+            return <a class={`pill ${route.text.toLowerCase()} ${currentPage && route.link.includes(currentPage) ? 'selected' : ''}`} href={route.link}>{route.text}</a>
+        })}
+    </div>
+    <div class="pills important" data-show-from-mobile>
+        { pills1.map( (route:Route) => {
+            return <a class={`pill ${route.text.toLowerCase()}`} href={route.link}>{route.text}</a>
+        })}
+    </div>
+    <div class="pills pills-icon" data-pills-open-close>
+        <span class="pill pill-icon" data-menu-open>
+            <Icon icon="menu" height={22} />
+        </span>
+        <span class="pill pill-icon" data-menu-close>
+            <Icon icon="close" height={22} />
+        </span>
+    </div>       
+</nav>
+
+<style lang="sass">
+    nav
+        --breakpoint-desktop: 900px
+        --breakpoint-laptop: 768px
+        --breakpoint-mobile: 540px
+        --breakpoint-mobile-xs: 440px
+        width: 100%
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        gap: 0.8rem
+        padding: 1rem 1.5rem
+
+        & .logo-container
+            flex: 1
+            display: flex 
+            justify-content: flex-start
+            align-items: center
+            & > a.data-logo-color
+                display: block
+                &:hover
+                    opacity: 0.6
+            & > a.data-logo-white
+                display: none
+                &:hover
+                    opacity: 0.6
+        & .pills
+            display: flex
+            justify-content: flex-end
+            align-items: center
+            gap: 0.2rem
+            padding: 0
+            background-color: var(--color-white-80)
+            border: 3px solid transparent
+            border-radius: 1.2rem
+            &.pills-icon
+                border: 3px solid transparent
+                & .pill
+                    fill: var(--color-theme-blue)
+            &.important
+                background-color: var(--color-theme-blue)
+                border: 3px solid transparent
+                & .pill
+                    color: var(--color-white)
+            & .pill
+                color: var(--color-theme-orange)
+                text-decoration: none
+                border: 0px solid red
+                border-radius: 1.2rem
+                padding: 0.4rem 1.2rem
+                &.biografía, &.contacto
+                    color: var(--color-theme-blue)
+                    &.selected
+                        color: var(--color-theme-orange)
+                &.selected, &:hover
+                    background-color: var(--color-grey)
+                    color: var(--color-theme-blue)
+                &.pill-icon
+                    max-height: 37.3px
+                    max-width: 37.3px
+                    display: flex
+                    place-content: center
+                    padding: 0.4rem 0.4rem
+                    & img
+                        margin: 0
+                        width: 22px
+                        height: 22px
+            &[data-pills-open-close]
+                & > [data-menu-open]
+                    display: flex
+                & > [data-menu-close]
+                    display: none
+            &[data-desktop-only]
+                display: flex
+                @media (max-width: 920px)
+                    display: none
+            &[data-show-from-mobile]
+                display: flex
+                @media (max-width: 500px)
+                    display: none
+        [data-menu-open], [data-menu-close]
+            cursor: pointer
+</style>

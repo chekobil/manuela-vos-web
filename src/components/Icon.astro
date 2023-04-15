@@ -1,0 +1,22 @@
+---
+export interface Props {
+	icon: string,
+    height?: number,
+}
+const { icon, height:logoheight } = Astro.props.frontmatter || Astro.props;
+const height = logoheight ? logoheight+"px" : "100%";
+---
+<div class="icon">
+    { icon === "home" && <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h3v-6h6v6h3v-9l-6-4.5L6 10Zm-2 2V9l8-6l8 6v12h-7v-6h-2v6Zm8-8.75Z"/></svg> }
+    { icon === "menu" && <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 48 48"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg> }
+    { icon === "close" && <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 48 48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg> }
+</div>
+
+<style lang="sass" define:vars={{ height }}>
+.icon
+    max-width: var(--height)
+    max-height: var(--height)
+    > svg
+        width: 100%
+        height: 100%
+</style>

@@ -1,0 +1,247 @@
+---
+export interface Route {
+    text: string;
+    link: string;
+}
+export interface Props {
+    video?: string;
+    cover?: string;
+    title?: string;
+    description?: string;
+    menu: Route[];
+}
+import NavPills from "../components/NavPills.astro";
+const { video, cover, title, description, menu } =
+    Astro.props.frontmatter || Astro.props;
+const coverName = title.toLowerCase().split(" ")[0];
+const coverImage = cover || `/covers/${coverName}.webp`;
+---
+
+<header>
+    <div class="header-image" style={`background-image: url(${coverImage})`}>
+        {
+            video && (
+                <div class="video-wrapper">
+                    <video playsinline autoplay muted loop>
+                        <source src={video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            )
+        }
+    </div>
+    <div class="header-background"></div>
+    <div class="header-menu">
+        <NavPills groups={menu} />
+    </div>
+    <div class="header-content">
+        {
+            title && (
+                <div class="title-container">
+                    <h1>{title}</h1>
+                </div>
+            )
+        }
+        {
+            description && (
+                <div class="description-container">
+                    <p>{description}</p>
+                </div>
+            )
+        }
+    </div>
+</header>
+<header class="fixed">
+    <div class="header-menu">
+        <NavPills groups={menu} />
+    </div>
+</header>
+
+<script>
+    const closes = document.querySelectorAll("[data-menu-close]");
+    const opens = document.querySelectorAll("[data-menu-open]");
+    const float = document.querySelector("[data-menu-floating]");
+    if (closes) {
+        closes.forEach((close) => {
+            close.addEventListener("click", () => {
+                if (float) float.classList.add("close");
+                document.documentElement.classList.remove("noscroll");
+            });
+        });
+    }
+    if (opens) {
+        opens.forEach((open) => {
+            open.addEventListener("click", () => {
+                if (float) float.classList.remove("close");
+                document.documentElement.classList.add("noscroll");
+            });
+        });
+    }
+</script>
+
+<style is:global lang="sass">
+    :root
+        --header-width: 500px
+    .floating-nav:not(.close) ~ header
+        pointer-events: none
+        z-index: 99
+        background: unset
+        background-color: transparent
+        border: none
+        box-shadow: unset
+        // todo el contenido del header excepto las pills debe ocultarse
+        & > *:not(.header-menu)
+            opacity: 0
+        & > .header-menu .pills:not([data-pills-open-close])
+            opacity: 0
+        & > .header-menu .pills[data-pills-open-close], [data-header-icon]
+            pointer-events: all
+            opacity: 1
+            background-color: transparent
+            & .pill
+                color: var(--color-white)
+                fill: var(--color-white)
+                &:hover
+                    fill: var(--color-theme-blue)
+            & > [data-menu-open]
+                display: none
+            & > [data-menu-close]
+                display: flex
+        & .logo-container
+            & a.data-logo-color
+                display: none
+            & a.data-logo-white
+                display: block
+    header.fixed
+        position: fixed
+        z-index: 3
+        display: grid
+        height: auto
+        background: unset
+        background-color: var(--color-white-90)
+        border-bottom: 1px solid var(--color-grey-60)
+        // box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px
+        transition: margin-top 300ms ease
+        margin-top: -200px
+        nav
+            padding: 0.6rem 1.5rem
+            padding-bottom: 1rem
+            & .pills:not(.important)
+                border-color: transparent
+                background-color: var(--color-grey)
+                & .pill
+                    color: var(--color-theme-blue)
+                    &.biografía, &.contacto
+                        color: var(--color-theme-orange)
+                    &:hover, &.selected
+                        background-color: var(--color-white-80)
+    body.fixed
+        header.fixed
+            margin-top: 0
+        header:not(.fixed)
+            opacity: 0
+    header
+        width: 100%
+        position: relative
+        z-index: 3
+        display: grid
+        grid-template-columns: 1fr
+        grid-template-rows: auto 1fr
+        justify-items: center
+        align-content: center
+        transition: opacity 300ms ease
+        opacity: 1
+        @media (min-width: 1601px)
+            height: 700px
+        @media (max-width: 1600px)
+            height: 600px
+        @media (max-width: 1000px)
+            height: 550px
+        @media (max-width: 650px)
+            height: 450px
+        &.small
+            @media (min-width: 1601px)
+                height: 300px
+            @media (max-width: 1600px)
+                height: 300px
+            @media (max-width: 1000px)
+                height: 300px
+            @media (max-width: 650px)
+                height: 250px
+            .header-background
+                background: linear-gradient(180deg, #CFD7DA 1.77%, rgba(217, 217, 217, 0) 80.92%)
+            .title-container
+                h1
+                    color: var(--color-theme-blue)
+        .header-background, .header-image
+            position: absolute
+            z-index: -1
+            overflow: hidden
+            width: 100%
+            height: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+        .header-image
+            background-size: cover
+            background-position: center center
+            background-repeat: no-repeat
+            .video-wrapper
+                height: 100%
+                width: 100%
+                position: relative
+                overflow: hidden
+                text-align: center
+                display: flex
+                align-items: center
+                justify-content: center
+                video
+                    object-fit: cover
+                    position: absolute
+                    top: 0
+                    left: 0
+                    height: 100%
+                    width: 100%
+        .header-background
+            background: linear-gradient(to top, rgba(23, 20, 17, 0.95) 16%, rgba(207, 222, 235, 0.19) 83.85%)
+            //background: linear-gradient(180deg, #CFD7DA 1.77%, rgba(217, 217, 217, 0) 80.92%)
+            //background: linear-gradient(to bottom, rgba(217, 217, 217, 0.9) 10%, rgba(217, 217, 217, 0.5) 100%)
+        .header-menu
+            width: var(--header-max-width)
+        .header-content
+            width: var(--header-max-width)
+            height: 100%
+            display: flex
+            flex-direction: column
+            justify-content: flex-start
+            align-items: center
+            padding-bottom: 3rem
+        .title-container, .description-container
+            width: min(100%, calc(100% - 4rem))
+            display: flex
+            justify-content: flex-start
+            @media (max-width: 650px)
+                justify-content: center
+        .title-container
+            flex: 3
+            align-items: flex-end
+            h1
+                color: var(--color-white)
+                line-height: 1
+                border-radius: 3rem
+                padding: 0
+        .description-container
+            flex: 1
+            align-items: flex-start
+            p
+                color: var(--color-white)
+        .credits-container
+            width: 100%
+            border: 1px solid red
+            padding: 0 0 1rem 0
+            display: flex
+            justify-content: flex-end
+            align-items: flex-start
+            gap: 3rem
+</style>
+

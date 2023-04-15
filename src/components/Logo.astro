@@ -1,0 +1,35 @@
+---
+export interface Props {
+    height: number,
+    logo?: string | null,
+    class?: string | null
+}
+const { height:logoheight, logo, class:classdata } = Astro.props.frontmatter || Astro.props;
+const logoratio = 1.38
+const width = (logoheight/logoratio)+"px";
+const height = logoheight+"px";
+let logoVersion
+if ( !logo || logo === "color" ){
+    // logoVersion = "/logo.svg"
+    logoVersion = "/logo-color-border.svg"
+} else if ( logo === "white" ) {
+    logoVersion = "/logo-white.svg"
+}
+const logourl = `url("${logoVersion}")`
+---
+<a href="/" class={"logo " + classdata}></a>
+<style lang="sass" define:vars={{ width, height, logourl }}>
+.logo
+    width: var(--width)
+    height: var(--height)
+    overflow: hidden
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background-image: var(--logourl)
+    background-repeat: no-repeat
+    background-size: auto 100%
+    background-position: right center
+
+</style>

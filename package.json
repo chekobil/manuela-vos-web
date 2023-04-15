@@ -1,0 +1,47 @@
+{
+  "name": "@example/basics",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "npm run image:resize && astro dev",
+    "start": "astro dev",
+    "auth:disable": "bash scripts/disable_auth.sh disable",
+    "build": "npm run auth:disable && npm run image:resize && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "image:resize": "node scripts/resizeImages.js",
+    "dropbox:auth": "bash scripts/dropboxauth.sh",
+    "notion:pull": "node scripts/notion2astro.js",
+    "notion:auth:pull": "npm run dropbox:auth && npm run notion:pull",
+    "repo:push": "bash ./scripts/push-static.sh",
+    "hosting:push": "cd ./_ANSIBLE && ansible-playbook manuelavos-static-ansible.yml && cd ..",
+    "update:all": "npm run notion:auth:pull && npm run repo:push && npm run hosting:push"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.16.1",
+    "@notionhq/client": "^2.2.3",
+    "astro": "^2.1.3",
+    "axios": "^1.3.4",
+    "dotenv": "^16.0.3",
+    "dropbox": "^10.34.0",
+    "gray-matter": "^4.0.3",
+    "node-fetch": "^3.3.1",
+    "notion-to-md": "^2.5.5",
+    "sharp": "^0.31.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.32.1",
+    "js-yaml": "^4.1.0",
+    "playwright": "^1.32.1",
+    "playwright-extra": "^4.3.6",
+    "postcss-preset-env": "^8.0.1",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "sass": "^1.57.1"
+  },
+  "browserslist": [
+    "last 5 version",
+    "> 1%",
+    "not dead"
+  ]
+}

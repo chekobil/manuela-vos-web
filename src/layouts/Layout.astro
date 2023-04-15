@@ -1,0 +1,285 @@
+---
+export interface Props {
+	video?: string
+	cover?: string
+	title?: string
+	description?: string
+	header?: string
+	mainclass?: string
+}
+import Header from '../components/Header.astro'
+import HeaderSmall from '../components/HeaderSmall.astro'
+import NavFloating from '../components/NavFloating.astro';
+import Footer from '../components/Footer.astro'
+const { video, cover, title, description, images, mainclass = "" } = Astro.props.frontmatter || Astro.props;
+let { header } = Astro.props.frontmatter || Astro.props;
+header = header || "small"
+
+const menu:any = [
+[
+    {
+        text: "Competiciones",
+        link: "/competition",
+    },
+    {
+        text: "Proyectos",
+        link: "/projects"
+    },
+    {
+        text: "Medios",
+        link: "/media"
+    },
+    {
+        text: "Biografía",
+        link: "/bio"
+    },
+    {
+        text: "Contacto",
+        link: "/contact"
+    }
+
+],[
+    {
+        text: "Patrocinadores",
+        link: "/sponsors"
+    }
+],[
+    {
+        text: "Blog",
+        link: "/blog"
+    },
+    {
+        text: "Colabora con nosotros",
+        link: "/colab"
+    }
+]
+]
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@200;300;400;600;800&family=Nunito:wght@200;300;400;500;700;900&family=Open+Sans:wght@300;400&&display=swap" rel="stylesheet">
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<NavFloating groups={menu} />
+		{ header === "large" && <Header menu={menu} video={video} cover={cover} title={title} description={description} /> }
+		{ header === "small" && <HeaderSmall menu={menu} title={title} description={description} images={images} /> }
+		<main class={mainclass}>
+			<slot/>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+	const breakpointScroll = 500
+	let currentScroll = 0;
+	document.addEventListener("scroll", () => {
+		let direction;
+		const body = document.body
+		if (window.scrollY > currentScroll){
+			direction = "down"
+		} else {
+			direction = "up"
+		}
+		if (window.scrollY >= breakpointScroll && direction === "up") {
+			body?.classList.add("fixed")
+		} else {
+			body?.classList.remove("fixed")
+		}
+		currentScroll = window.scrollY
+	});
+</script>
+
+<style is:global lang="sass">
+	:root
+		--breakpoint-desktop: 900px
+		--breakpoint-laptop: 768px
+		--breakpoint-mobile: 540px
+		--breakpoint-mobile-xs: 440px
+		--header-width: 960px
+		--content-width: 1200px
+		--reading-width: 960px
+		--header-max-width: min(100vw, var(--header-width))
+		--main-max-width: min(100vw, var(--content-width))
+		--reading-max-width: min(100vw, var(--reading-width))
+		--font-size-credits: 0.75rem
+		--font-size-text: 1rem
+		--font-size-h2: 2rem
+		--font-size-h1: 2.5rem
+		--color-ghost: #fafbfb
+		--color-ghost-90: rgba(250, 251, 251, 0.90)
+		--color-grey: rgb(213,219,219)
+		--color-grey-80: rgba(213,219,219, 0.8)
+		--color-grey-60: rgba(213,219,219, 0.6)
+		--color-white: #fff
+		--color-white-80: rgba(255, 255, 255, 0.8)
+		--color-white-90: rgba(255, 255, 255, 0.9)
+		--color-black: #02031a
+		--color-theme-orange: #f15937
+		--color-theme-blue: #2c3a8a
+		--color-theme-violet: #ed0088
+		--font-family-alternate: "Bebas Neue"
+	h1 
+		font-size: var(--font-size-h1)
+	h2 
+		font-size: var(--font-size-h2)
+	* 
+		box-sizing: border-box
+	a 
+		color: var(--color-theme-blue)
+		&:hover
+			color: var(--color-theme-orange)
+	html, body
+		padding: 0
+		margin: 0
+	html
+		font-family: Nunito Sans, system-ui, sans-serif
+		font-size: 16px
+		font-weight: 600
+		&.noscroll
+			overflow: hidden
+	body
+		color: var(--color-black)
+		display: grid
+		grid-template-columns: 100vw
+		grid-template-rows: auto 1fr auto
+		justify-items: center
+		min-height: 100vh
+		p
+			font-family: Open Sans, system-ui, sans-serif
+			font-weight: 300
+			font-size: 1.125rem
+			line-height: 1.5
+			margin: 0
+			padding: 0.5rem 0
+			strong
+				font-size: 1.2rem
+				font-weight: 300
+			
+		h1, h2, h3, h4, h5, h6 
+			line-height: 1.2
+			font-weight: 900
+			margin: 0 0 10px
+		h1 
+			font-size: 2.75rem
+		img, iframe
+			width: 100%
+			max-width: 100%
+			margin: 1rem 0
+		img
+			height: auto
+		iframe
+			aspect-ratio: 16 / 9
+		figure
+			margin: 0
+		figure > img
+			margin-bottom: 0
+		img + figcaption
+			text-align: right
+			margin: 0.4rem 1rem
+			font-size: 0.8rem
+			color: #888
+		header, main, footer
+			width: 100%
+		header
+			align-self: start
+		main
+			margin-top: 4rem
+			margin-bottom: 6rem
+			max-width: var(--main-max-width)
+			align-self: start
+			padding: 0 1rem
+			display: flex
+			flex-direction: column
+			gap: 0
+			&.reading
+				max-width: var(--reading-max-width)
+			.main-title
+				color: var(--color-theme-orange)
+				position: relative
+				&:beforeNO
+					content: ""
+					position: absolute
+					bottom: -0.5rem
+					left: 0
+					width: 4rem
+					border-bottom: 2px solid var(--color-theme-orange)
+
+		footer
+			align-self: end
+
+	ul
+		padding: 0
+		list-style: none
+		display: grid
+		grid-template-columns: 1fr
+		gap: 1.5rem
+		&.blog
+			grid-template-columns: repeat(3, 1fr)
+			gap: 2rem
+
+	.db-item
+		overflow: hidden
+		text-decoration: none
+		margin: 0
+		padding: 0
+		background-color: transparent
+		border: 1px solid var(--color-grey)
+		border-radius: 0
+		transition: transform 300ms ease, border 300ms ease
+		font-weight: 300
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		gap: 0.6rem
+		.item-image
+			flex: 0 auto
+			overflow: hidden
+			transition: transform 300ms ease, opacity 300ms ease
+			opacity: 0.8
+			img
+				object-fit: cover
+				max-width: unset
+				width: 100%
+				height: 100%
+				margin: 0
+		.item-content
+			flex: 1
+			padding: 1rem 1.2rem
+			padding-bottom: 1.2rem
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+			.title
+				flex: 1
+				font-size: 1.8rem
+				color: var(--color-theme-blue)
+				transition: transform 300ms ease
+			.date
+				text-align: right
+				flex: 0
+				font-size: 0.8rem
+				color: var(--color-theme-blue)
+		&:hover
+			border: 1px solid var(--color-theme-blue)
+			.item-image
+				opacity: 1
+				transform: scale(106%)
+			.item-content
+				.title
+					// transform: translateY(-2px)
+					transform: scale(102%)
+
+
+</style>

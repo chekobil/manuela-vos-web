@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dropbox JavaScript SDK</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/10.34.0/Dropbox-sdk.min.js" integrity="sha512-PTKs+sPreCz6TLyLj9CYx3LxxPZmY5k1k5Yb5Y5mUQzngf/XUxNdtyWwYjcPcOZJm4wSYiicZr0kotLmDIRFmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+<body>
+
+  <div class="container main">
+    <div id="pre-auth-section" style="display:none;">
+      <p>This example takes the user through Dropbox's API OAuth flow using <code>Dropbox.getAuthenticationUrl()</code> method [<a href="http://dropbox.github.io/dropbox-sdk-js/Dropbox.html#getAuthenticationUrl">docs</a>] and then uses the generated access token to list the contents of their root directory.</p>
+      <a href="" id="authlink" class="button" data-button-login>Authenticate</a>
+      <p class="info">Once authenticated, it will use the access token to list the files in your root directory.</p>
+    </div>
+
+    <div id="authed-section" style="display:none;">
+      <p>You have successfully authenticated. Below are the contents of your root directory. They were fetched using the SDK and access token.</p>
+      <p data-auth-token></p>
+      <ul id="files"></ul>
+    </div>
+  </div>
+
+  <script>
+    import { parseQueryString } from '../dropbox/utils.js'
+    const CLIENT_ID = import.meta.env.PUBLIC_DROPBOX_CLIENTID; // es el authId de la App de Dropbox
+    if (!CLIENT_ID) throw "Error reading ENV client_id"
+    // Parses the url and gets the access token if it is in the urls hash
+    function getAccessTokenFromUrl() {
+        const token = parseQueryString(window.location.hash).access_token
+        console.log("NEW TOKEN = ", token)
+        return token;
+    }
+
+    // If the user was just redirected from authenticating, the urls hash will
+    // contain the access token.
+    function isAuthenticated() {
+      return !!getAccessTokenFromUrl();
+    }
+
+    // Render a list of items to #files
+    function renderItems(path: string, items: any) {
+      var filesContainer = document.getElementById('files');
+      var h3 = document.createElement('h3');
+      h3.innerHTML = path;
+      filesContainer?.appendChild(h3);
+      items.forEach(function(item: any) {
+        var li = document.createElement('li');
+        li.innerHTML = item.name;
+        filesContainer?.appendChild(li);
+      });
+    }
+
+    // This example keeps both the authenticate and non-authenticated setions
+    // in the DOM and uses this function to show/hide the correct section.
+    function showPageSection(elementId: string) {
+        const elm = document.getElementById(elementId)
+        if (elm) elm.style.display = 'block';
+    }
+
+    if (isAuthenticated()) {
+      showPageSection('authed-section');
+
+      // Create an instance of Dropbox with the access token and use it to
+      // fetch and render the files in the users root directory.
+      const accessToken = getAccessTokenFromUrl()
+      // @ts-ignore eslint-disable-next-line
+      const dbx = new Dropbox.Dropbox({ accessToken });
+      const folderPath = '/FotosWeb'
+      const tokenELm = document.querySelector('[data-auth-token]')
+      if (tokenELm) tokenELm.innerHTML = accessToken
+      dbx.filesListFolder({path: folderPath})
+        .then(function(response: any) {
+          renderItems(folderPath, response.result.entries);
+        })
+        .catch(function(error: any) {
+          console.error(error);
+        });
+    } else {
+        console.log("NO ESTAS AUTENTICADO")
+        showPageSection('pre-auth-section');
+
+      // Set the login anchors href using dbx.getAuthenticationUrl()
+      // @ts-ignore eslint-disable-next-line
+      var dbx = new Dropbox.Dropbox({ clientId: CLIENT_ID });
+      // se genera la URL de dropbox a la que serás redirigido
+      // tiene el client_id y la url a la que serás devuelto al finalizar el proceso de auth
+      dbx.auth.getAuthenticationUrl('http://localhost:3000/auth')
+        .then((authUrl: any) => {
+            const elm = document.getElementById('authlink') as HTMLAnchorElement
+            if (elm) elm.href = authUrl;
+        })
+    }
+  </script>
+</body>
+</html>

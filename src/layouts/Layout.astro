@@ -8,6 +8,7 @@ export interface Props {
 	mainclass?: string
 }
 import Header from '../components/Header.astro'
+import Sidebar from '../components/Sidebar.astro'
 import HeaderSmall from '../components/HeaderSmall.astro'
 import NavFloating from '../components/NavFloating.astro';
 import Footer from '../components/Footer.astro'
@@ -75,7 +76,10 @@ const menu:any = [
 		{ header === "large" && <Header menu={menu} video={video} cover={cover} title={title} description={description} /> }
 		{ header === "small" && <HeaderSmall menu={menu} title={title} description={description} images={images} /> }
 		<main class={mainclass}>
-			<slot/>
+			<Sidebar />
+			<section id="content">
+				<slot/>
+			</section>
 		</main>
 		<Footer />
 	</body>
@@ -137,9 +141,10 @@ const menu:any = [
 	* 
 		box-sizing: border-box
 	a 
-		color: var(--color-theme-blue)
+		color: var(--color-theme-orange)
+		font-weight: 600
 		&:hover
-			color: var(--color-theme-orange)
+			color: var(--color-theme-blue)
 	html, body
 		padding: 0
 		margin: 0
@@ -165,7 +170,10 @@ const menu:any = [
 			padding: 0.5rem 0
 			strong
 				font-size: 1.2rem
-				font-weight: 300
+				font-weight: 400
+		a 
+			strong
+				font-weight: 600
 			
 		h1, h2, h3, h4, h5, h6 
 			line-height: 1.2
@@ -200,9 +208,19 @@ const menu:any = [
 			max-width: var(--main-max-width)
 			align-self: start
 			padding: 0 1rem
-			display: flex
-			flex-direction: column
+			display: grid
+			grid-template-columns: 0px 1fr
 			gap: 0
+			@media (min-width: 600px)
+				padding: 0 1.4rem
+			@media (min-width: 980px)
+				padding: 0 1.6rem
+				grid-template-columns: 240px 1fr
+				gap: 0.8rem
+			#content
+				border: 0px solid orange
+			#sidebar
+				border: 0px solid #efefef
 			&.reading
 				max-width: var(--reading-max-width)
 			.main-title
@@ -224,10 +242,16 @@ const menu:any = [
 		list-style: none
 		display: grid
 		grid-template-columns: 1fr
-		gap: 1.5rem
+		gap: 1rem
 		&.blog
-			grid-template-columns: repeat(3, 1fr)
-			gap: 2rem
+			grid-template-columns: 1fr
+			gap: 0.8rem
+			@media (min-width: 580px)
+				grid-template-columns: repeat(2, 1fr)
+			@media (min-width: 850px)
+				grid-template-columns: repeat(3, 1fr)
+			@media (min-width: 1200px)
+				grid-template-columns: repeat(3, 1fr)
 
 	.db-item
 		overflow: hidden
@@ -245,10 +269,15 @@ const menu:any = [
 		gap: 0.6rem
 		.item-image
 			flex: 0 auto
+			min-height: 260px
 			overflow: hidden
 			transition: transform 300ms ease, opacity 300ms ease
 			opacity: 0.8
+			border: none
+			outline: none
 			img
+				border: none
+				outline: none
 				object-fit: cover
 				max-width: unset
 				width: 100%
@@ -256,21 +285,27 @@ const menu:any = [
 				margin: 0
 		.item-content
 			flex: 1
-			padding: 1rem 1.2rem
-			padding-bottom: 1.2rem
+			padding: 1.2rem
 			display: flex
 			flex-direction: column
 			justify-content: space-between
 			.title
 				flex: 1
-				font-size: 1.8rem
+				font-size: 1.2rem
+				font-weight: 900
+				text-transform: uppercase
+				//font-family: var(--font-family-alternate)
+				text-align: left
+				line-height: 1
+				margin-bottom: 10px
 				color: var(--color-theme-blue)
 				transition: transform 300ms ease
 			.date
-				text-align: right
+				text-align: left
 				flex: 0
-				font-size: 0.8rem
-				color: var(--color-theme-blue)
+				font-size: 1rem
+				font-weight: 900
+				color: var(--color-grey)
 		&:hover
 			border: 1px solid var(--color-theme-blue)
 			.item-image

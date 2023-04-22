@@ -175,7 +175,8 @@ function getMdLinkData(mdLink) {
 
 function writeMdFile(name, dest, content, dryrun=true) {
   //writing to file
-  const filename = name+".md"
+  const cleanName = cleanString(name)
+  const filename = cleanName+".md"
   const filepath = path.join(dest, filename)
   if (dryrun) {
     console.log("--dryrun + ", filename)
@@ -335,6 +336,14 @@ export const notionPageToMd = async (page, dryrun=true, writeall=false) => {
     }
 }
   
+export function cleanString(string) {
+  // elimina lo que no sea, letra, numero o guion bajo
+  let cleanString = string.trim().replace(/[^\w\d\sñ_]/g, '');
+  // espacios por guion bajo
+  cleanString = cleanString.replaceAll(/ /g, '_');
+  return cleanString;
+}
+
 export const notionDbToMdFiles = async (db, dryrun=true, writeall=false) => {
       // ARTICULOS_DB
       const { notionDbId, author, dest, layout, ref } = db
@@ -370,7 +379,7 @@ export const notionDbToMdFiles = async (db, dryrun=true, writeall=false) => {
             const props = p.properties
             const published = props[keyDate]?.date?.start || ""
             const title = props[keyTitle].title[0].plain_text
-            const slug = title.toLowerCase().replaceAll(" ", "_").replaceAll(",", "").replaceAll(":", "")
+            const slug = cleanString(title).toLowerCase()
             const page = { 
                 id: p.id, 
                 edit: p.last_edited_time,

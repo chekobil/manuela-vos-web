@@ -7,7 +7,6 @@ title: Biografía
 slug: index
 layout: ../../layouts/LayoutReading.astro
 header: large
-modified: true
 cover: /images/manu_bio_brazos.webp
 images:
   - /images/manu_bio_brazos.webp

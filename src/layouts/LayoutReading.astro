@@ -2,16 +2,17 @@
 export interface Props {
 	video?: string
 	cover?: string
+	headerTitle?: string
 	title?: string
 	description?: string
 	header?: string
 	mainclass?: string
 }
 import Layout from './Layout.astro'
-const { header, video, cover, title, description, images } = Astro.props.frontmatter || Astro.props;
+const { header, video, cover, title, headerTitle, description, images } = Astro.props.frontmatter || Astro.props;
 ---
 
-<Layout mainclass="reading" {header} {video} {cover} {title} {description} {images}>
+<Layout mainclass="reading" {header} {video} {cover} {title} {headerTitle} {description} {images}>
     <slot/>
 </Layout>
 

@@ -7,7 +7,6 @@ title: Patrocinadores
 slug: index
 layout: ../../layouts/LayoutReading.astro
 header: large
-modified: true
 ---
 
 La atleta y deportista Manuela Vos se ha propuesto un gran reto: participar en los Juegos Paralímpicos de París 2024. Para ello, su proyecto busca patrocinadores y colaboradores que quieran apoyarla en su camino hacia la excelencia deportiva.

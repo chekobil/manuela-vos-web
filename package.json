@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "image:resize": "node scripts/resizeImages.js",
+    "content:clean": "node scripts/cleanContent.js",
     "dropbox:auth": "bash scripts/dropboxauth.sh",
     "notion:pull": "node scripts/notion2astro.js",
     "notion:auth:pull": "npm run dropbox:auth && npm run notion:pull",
@@ -31,7 +32,10 @@
     "sharp": "^0.31.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.21.4",
     "@playwright/test": "^1.32.1",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
     "js-yaml": "^4.1.0",
     "playwright": "^1.32.1",
     "playwright-extra": "^4.3.6",
@@ -43,5 +47,27 @@
     "last 5 version",
     "> 1%",
     "not dead"
-  ]
+  ],
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "jest": {
+    "testTimeout": 20000,
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  }
 }

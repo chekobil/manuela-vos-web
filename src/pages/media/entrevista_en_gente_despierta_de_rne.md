@@ -4,7 +4,7 @@ edit: '2023-04-13T22:41:00.000Z'
 author: MVos Team
 published: '2022-07-14'
 title: Entrevista en “Gente despierta” de RNE
-slug: entrevista_en_“gente_despierta”_de_rne
+slug: entrevista_en_gente_despierta_de_rne
 layout: ../../layouts/LayoutReading.astro
 header: small
 ---

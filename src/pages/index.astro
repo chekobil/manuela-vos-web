@@ -20,7 +20,8 @@ try {
 } catch(e) {
 	console.log("Error. NO hay archivos md en blog");
 }
-const title = "High with a little help from my friends";
+const title = "Home";
+const headerTitle = "High with a little help from my friends";
 const description = ""
 const video = "/videos/homepage.mp4";
 const cover = "/covers/homepage.webp";
@@ -29,6 +30,7 @@ const cover = "/covers/homepage.webp";
 <Layout
 	header="large"
 	title={title}
+	headerTitle={headerTitle}
 	description={description}
 	cover={cover}
 	video={video}

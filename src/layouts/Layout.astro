@@ -250,6 +250,14 @@ const menu:any = [
 		&.blog
 			grid-template-columns: 1fr
 			gap: 0.8rem
+			@media (max-width: 400px)
+				.db-item .item-image
+					min-height: 180px
+					max-height: 180px
+			@media (max-width: 470px)
+				.db-item .item-image
+					min-height: 200px
+					max-height: 200px
 			@media (min-width: 580px)
 				grid-template-columns: repeat(2, 1fr)
 			@media (min-width: 850px)

@@ -10,7 +10,6 @@ slug: >-
   manuela_vos_y_la_historia_que_rodea_a_un_mundial_que_ya_es_historia_del_deporte_español__el_huffpost
 layout: ../../layouts/LayoutReading.astro
 header: small
-modified: true
 cover: /images/manuela-vos-con-su-medalla-de-oro-en-el-mundial-de-zurich.webp
 images:
   - /images/manuela-vos-con-su-medalla-de-oro-en-el-mundial-de-zurich.webp

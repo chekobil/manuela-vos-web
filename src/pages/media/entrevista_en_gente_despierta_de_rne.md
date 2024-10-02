@@ -1,21 +1,24 @@
 ---
 id: 04efbb1e-5000-4755-bb2b-ef36dc16d3ed
-edit: '2023-04-13T22:41:00.000Z'
+edit: '2024-10-02T05:56:00.000Z'
 author: MVos Team
 published: '2022-07-14'
 title: Entrevista en “Gente despierta” de RNE
 slug: entrevista_en_gente_despierta_de_rne
 layout: ../../layouts/LayoutReading.astro
 header: small
+cover: /images/manu-radio-silla.webp
+images:
+  - /images/manu-radio-silla.webp
 ---
 
-Manuela fué entrevistada por Ramón Arroyo para el programa **Gente Despierta**, dentro de la sección **Rendirse no es una opción.**
+Manuela fue entrevistada por Ramón Arroyo para el programa **Gente Despierta**, dentro de la sección **Rendirse no es una opción.**
 
 
 [Escucha la entrevista en la web de rtve.es](https://www.rtve.es/play/audios/gente-despierta/oi-gritar-nombres-hijos-reaccione/6649224/)
 
 
-[embed](https://img2.rtve.es/a/6649224)
+<figure><img src="/images/manu-radio-silla.webp" alt=""><figcaption align="left"></figcaption></figure>
 
 
 Hace un año, el 5 de julio de 2021, **Manuela Vos**

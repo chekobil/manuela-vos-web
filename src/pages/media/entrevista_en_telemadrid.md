@@ -1,17 +1,15 @@
 ---
 id: f16acc23-07a2-4e9c-ab03-23fab042afd5
-edit: '2023-04-13T22:38:00.000Z'
+edit: '2024-10-02T06:54:00.000Z'
 author: MVos Team
 published: '2022-12-11'
 title: Entrevista en Telemadrid
 slug: entrevista_en_telemadrid
 layout: ../../layouts/LayoutReading.astro
 header: small
-cover: >-
-  https://www.telemadrid.es/2022/11/28/corporativo/sala-de-prensa/_2509859022_39219555_1300x731.jpg
+cover: /images/telemadrid-silla.webp
 images:
-  - >-
-    https://www.telemadrid.es/2022/11/28/corporativo/sala-de-prensa/_2509859022_39219555_1300x731.jpg
+  - /images/telemadrid-silla.webp
 ---
 
 Manuela fué entrevistada en el programa **Visibles** de Telemadrid, con motivo de la celebración del **Día Internacional de las Personas con Discapacidad**
@@ -20,10 +18,13 @@ Manuela fué entrevistada en el programa **Visibles** de Telemadrid, con motivo 
 Aquí puedes ver el programa completo (Manuela aparece a partir del minuto 46)
 
 
+<iframe src='http://players.brightcove.net/104403117001/Lti7DzQ054_default/index.html?videoId=6316122537112' allowfullscreen frameborder=0></iframe>
+
+
 [**“Visibles en Madrid: Día de la discapacidad”**](https://www.telemadrid.es/programas/visibles/Visibles-Dia-de-la-discapacidad-2-2508669152--20221124115200.html)
 
 
-![](https://www.telemadrid.es/2022/11/28/corporativo/sala-de-prensa/_2509859022_39219555_1300x731.jpg)
+<figure><img src="/images/telemadrid-silla.webp" alt=""><figcaption align="left"></figcaption></figure>
 
 
 El 3 de diciembre se celebra el **Día Internacional de las Personas con Discapacidad** con el objetivo de promover los derechos y el bienestar de las personas con discapacidad en todos los ámbitos de la sociedad y, por encima de todo, una igualdad social y laboral para todas ellas.

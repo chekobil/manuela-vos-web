@@ -1,102 +1,105 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CardLink from "../components/CardLink.astro";
 const logoheight = 136;
 const height = logoheight + "px";
-let media
+let media;
 try {
-	media = await Astro.glob("./media/*.md")
-} catch(e) {
-	console.log("Error. NO hay archivos md en media");
+  media = await Astro.glob("./media/*.md");
+  media.sort(
+    (a, b) =>
+      Date.parse(b.frontmatter.published) - Date.parse(a.frontmatter.published)
+  );
+} catch (e) {
+  console.log("Error. NO hay archivos md en media");
 }
 let competition;
 try {
-	competition = await Astro.glob("./competition/*.md")
-} catch(e) {
-	console.log("Error. NO hay archivos md en competition");
+  competition = await Astro.glob("./competition/*.md");
+} catch (e) {
+  console.log("Error. NO hay archivos md en competition");
 }
-let blog
+let blog;
 try {
-	blog = await Astro.glob("./blog/*.md")
-} catch(e) {
-	console.log("Error. NO hay archivos md en blog");
+  blog = await Astro.glob("./blog/*.md");
+  blog.sort(
+    (a, b) =>
+      Date.parse(b.frontmatter.published) - Date.parse(a.frontmatter.published)
+  );
+} catch (e) {
+  console.log("Error. NO hay archivos md en blog");
 }
 const title = "Home";
 const headerTitle = "High with a little help from my friends";
-const description = ""
+const description = "";
 const video = "/videos/homepage.mp4";
 const cover = "/covers/homepage.webp";
 ---
 
 <Layout
-	header="large"
-	title={title}
-	headerTitle={headerTitle}
-	description={description}
-	cover={cover}
-	video={video}
+  header="large"
+  title={title}
+  headerTitle={headerTitle}
+  description={description}
+  cover={cover}
+  video={video}
 >
-	{ competition?.length &&
-		<section class="text">
-			<h2>Próximas competiciones</h2>
-			<ul class="blog">
-				{
-					competition.slice(0, 2).map((post) => {
-						return (
-							<a href={post.url} class="db-item">
-								<div class="title">{post.frontmatter.title}</div>
-								<div class="date">{post.frontmatter.published}</div>
-							</a>
-						);
-					})
-				}
-			</ul>
-		</section>
-	}
-	{ media?.length &&
-		<section class="text">
-			<h2>Ultimas apariciones en medios</h2>
-			<ul class="blog">
-				{
-					media.slice(0, 4).map((post) => {
-						return (
-							<a href={post.url} class="db-item">
-								<div class="item-image">
-									<img src={post.frontmatter.cover} alt="" />
-								</div>
-								<div class="item-content">
-									<div class="title">{post.frontmatter.title}</div>
-									<div class="date">{post.frontmatter.published}</div>
-								</div>
-							</a>
-						);
-					})
-				}
-			</ul>
-		</section>
-	}
-	{ blog?.length &&
-		<section class="text">
-			<h2>Ultimas entradas del blog</h2>
-			<ul class="blog">
-				{
-					blog.slice(0, 4).map((post) => {
-						return (
-							<a href={post.url} class="db-item">
-								<div class="item-image">
-									<img src={post.frontmatter.cover} alt="" />
-								</div>
-								<div class="item-content">
-									<div class="title">{post.frontmatter.title}</div>
-									<div class="date">{post.frontmatter.published}</div>
-								</div>
-							</a>
-						);
-					})
-				}
-			</ul>
-		</section>
-	}
-	<!-- <section class="text">
+  {
+    competition?.length && (
+      <section class="text">
+        <h2>Próximas competiciones</h2>
+        <ul class="blog">
+          {competition.slice(0, 2).map((post) => {
+            return (
+              <a href={post.url} class="db-item">
+                <div class="title">{post.frontmatter.title}</div>
+                <div class="date">{post.frontmatter.published}</div>
+              </a>
+            );
+          })}
+        </ul>
+      </section>
+    )
+  }
+  {
+    media?.length && (
+      <section class="text">
+        <h2>Últimas apariciones en medios</h2>
+        <ul class="blog">
+          {media.slice(0, 3).map((post) => {
+            return (
+              <CardLink
+                url={String(post.url)}
+                img={post.frontmatter.cover}
+                title={post.frontmatter.title}
+                date={post.frontmatter.published}
+              />
+            );
+          })}
+        </ul>
+      </section>
+    )
+  }
+  {
+    blog?.length && (
+      <section class="text">
+        <h2>Últimas entradas del blog</h2>
+        <ul class="blog">
+          {blog.slice(0, 3).map((post) => {
+            return (
+              <CardLink
+                url={String(post.url)}
+                img={post.frontmatter.cover}
+                title={post.frontmatter.title}
+                date={post.frontmatter.published}
+              />
+            );
+          })}
+        </ul>
+      </section>
+    )
+  }
+  <!-- <section class="text">
 		<h2>Proyectos</h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ex
@@ -106,7 +109,7 @@ const cover = "/covers/homepage.webp";
 		</p>
 		<a href="/projects">Ir</a>
 	</section> -->
-	<!-- <section class="text">
+  <!-- <section class="text">
 		<h2>Nuestros patrocinadores</h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ex
@@ -116,7 +119,7 @@ const cover = "/covers/homepage.webp";
 		</p>
 		<a href="/sponsors">Ir</a>
 	</section> -->
-	<!-- <section class="text">
+  <!-- <section class="text">
 		<h2>Colabora con nosotros</h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ex
@@ -129,41 +132,42 @@ const cover = "/covers/homepage.webp";
 </Layout>
 
 <style lang="sass" define:vars={{ height }}>
-	$breakpoint-mobile: 450px
-	$breakpoint-tablet: 768px
-	$breakpoint-desktop: 980px
-	.head
-		width: 100%
-		display: flex
-		gap: 1rem
-		align-items: center
-		justify-content: center
-		:global(.logo)
-			min-height: var(--height)
-			flex: 1 0
-			@media (min-width: $breakpoint-mobile)
-				flex-grow: 4
-			@media (min-width: $breakpoint-tablet)
-				flex-grow: 5
-			@media (min-width: $breakpoint-desktop)
-				flex-grow: 8
-	.text
-		font-size: 1.1rem
-		padding: 0
-		text-align: justify
-		text-justify: inter-word
-		h2
-			color: var(--color-theme-orange)
-			font-weight: 300
-			position: relative
-			margin-bottom: 4rem
-			&:before
-				content: ""
-				position: absolute
-				bottom: -0.5rem
-				left: 0
-				width: 3rem
-				border-bottom: 2px solid var(--color-theme-orange)
-	.text + .text
-		margin-top: 3rem
+  $breakpoint-mobile: 450px
+  $breakpoint-tablet: 768px
+  $breakpoint-desktop: 980px
+  .head
+    width: 100%
+    display: flex
+    gap: 1rem
+    align-items: center
+    justify-content: center
+    :global(.logo)
+      min-height: var(--height)
+      flex: 1 0
+      @media (min-width: $breakpoint-mobile)
+        flex-grow: 4
+      @media (min-width: $breakpoint-tablet)
+        flex-grow: 5
+      @media (min-width: $breakpoint-desktop)
+        flex-grow: 8
+  .text
+    font-size: 1.1rem
+    padding: 0
+    text-align: justify
+    text-justify: inter-word
+    h2
+      color: var(--color-theme-orange)
+      font-size: 1.7rem
+      font-weight: 300
+      position: relative
+      margin-bottom: 4rem
+      &:before
+        content: ""
+        position: absolute
+        bottom: -0.5rem
+        left: 0
+        width: 3rem
+        border-bottom: 0 solid var(--color-theme-orange)
+  .text + .text
+    margin-top: 3rem
 </style>

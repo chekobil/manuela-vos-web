@@ -1,27 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro'
-const posts = await Astro.glob('./blog/*.md');
-const title = "Blog"
-const cover = `/covers/${title.toLowerCase()}.webp`
-const description = ""
+import Layout from "../layouts/Layout.astro";
+import CardLink from "../components/CardLink.astro";
+const posts = await Astro.glob("./blog/*.md");
+posts.sort(
+  (a, b) =>
+    Date.parse(b.frontmatter.published) - Date.parse(a.frontmatter.published)
+);
+const title = "Blog";
+const cover = `/covers/${title.toLowerCase()}.webp`;
+const description = "";
 ---
+
 <Layout header="large" title={title} cover={cover} description={description}>
   <ul class="blog">
     {
-      posts?.length && posts.map(post => {
-        return (
-          <a href={post.url} class="db-item">
-            <div class="item-image">
-                  <img src={post.frontmatter.cover} alt="" />
-                </div>
-                <div class="item-content">
-                  <div class="title">{post.frontmatter.title}</div>
-                  <div class="date">{post.frontmatter.published}</div>
-                </div>
-          </a>
-        )
-      })
+      posts?.length &&
+        posts.map((post) => {
+          return (
+            <CardLink
+              url={String(post.url)}
+              img={post.frontmatter.cover}
+              title={post.frontmatter.title}
+              date={post.frontmatter.published}
+            />
+          );
+        })
     }
-    { !posts?.length && <p>No hay contenido</p> }
+    {!posts?.length && <p>No hay contenido</p>}
   </ul>
 </Layout>

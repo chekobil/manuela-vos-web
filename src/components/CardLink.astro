@@ -1,0 +1,22 @@
+---
+export interface Props {
+  img: string;
+  title: string;
+  date: string;
+  url: string;
+}
+
+const { img, title, date, url } = Astro.props;
+---
+
+<a href={url} class="db-item">
+  <div class="item-image">
+    <img src={img} alt="" />
+  </div>
+  <div class="item-content">
+    <div class="date">{date}</div>
+    <div class="title">{title}</div>
+  </div>
+</a>
+
+<style></style>

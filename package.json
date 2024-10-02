@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm run image:resize && astro dev",
     "start": "astro dev",
+    "test": "jest --testPathPattern=tests/",
     "auth:disable": "bash scripts/disable_auth.sh disable",
     "build": "npm run auth:disable && npm run image:resize && astro build",
     "preview": "astro preview",
@@ -15,9 +16,9 @@
     "dropbox:auth": "bash scripts/dropboxauth.sh",
     "notion:pull": "node scripts/notion2astro.js",
     "notion:auth:pull": "npm run dropbox:auth && npm run notion:pull",
-    "repo:push": "bash ./scripts/push-static.sh",
+    "repo:push": "bash ./scripts/build-static-push.sh",
     "hosting:push": "cd ./_ANSIBLE && ansible-playbook manuelavos-static-ansible.yml && cd ..",
-    "update:all": "npm run notion:auth:pull && npm run repo:push && npm run hosting:push"
+    "update:all": "npm run notion:pull && npm run repo:push && npm run hosting:push"
   },
   "dependencies": {
     "@astrojs/image": "^0.16.1",

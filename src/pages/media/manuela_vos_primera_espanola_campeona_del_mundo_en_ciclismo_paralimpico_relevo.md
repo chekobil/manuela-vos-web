@@ -20,5 +20,5 @@ images:
 <figure><img src="/images/manu-bici-pedaleando.webp" alt=""><figcaption align="left"></figcaption></figure>
 
 
-<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🏆 ¡Manuela Vos, campeona del mundo en contrarreloj!<br><br>◾️ Primera mujer española en conseguirlo. <br><br>❤️ Enhorabuena. <br><br>📸 <a href="https://twitter.com/RFECiclismo?ref_src=twsrc%5Etfw">@RFECiclismo</a> <a href="https://t.co/1poDV0jzWJ">pic.twitter.com/1poDV0jzWJ</a></p>&mdash; Relevo (@relevo) <a href="https://twitter.com/relevo/status/1838646234036212045?ref_src=twsrc%5Etfw">September 24, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> <p></p>
+<div class='embed-content'><blockquote class="twitter-tweet"><p lang="es" dir="ltr">🏆 ¡Manuela Vos, campeona del mundo en contrarreloj!<br><br>◾️ Primera mujer española en conseguirlo. <br><br>❤️ Enhorabuena. <br><br>📸 <a href="https://twitter.com/RFECiclismo?ref_src=twsrc%5Etfw">@RFECiclismo</a> <a href="https://t.co/1poDV0jzWJ">pic.twitter.com/1poDV0jzWJ</a></p>&mdash; Relevo (@relevo) <a href="https://twitter.com/relevo/status/1838646234036212045?ref_src=twsrc%5Etfw">September 24, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> <p></p></div>
 

@@ -153,8 +153,8 @@ const cover = "/covers/homepage.webp";
   .text
     font-size: 1.1rem
     padding: 0
-    text-align: justify
-    text-justify: inter-word
+    text-align: start
+    text-justify: auto
     h2
       color: var(--color-theme-orange)
       font-size: 1.7rem
@@ -168,6 +168,12 @@ const cover = "/covers/homepage.webp";
         left: 0
         width: 3rem
         border-bottom: 0 solid var(--color-theme-orange)
+      @media (min-width: $breakpoint-mobile)
+        flex-grow: 4
+      @media (min-width: $breakpoint-tablet)
+        flex-grow: 5
+      @media (min-width: $breakpoint-desktop)
+        flex-grow: 8
   .text + .text
     margin-top: 3rem
 </style>

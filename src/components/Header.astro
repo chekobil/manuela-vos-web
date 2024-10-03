@@ -239,8 +239,23 @@ const coverImage = cover || `/covers/${coverName}.webp`;
       }
 
       @media (max-width: 650px) {
-        height: 350px;
-
+        height: 330px;
+        overflow: hidden;
+        .header-content {
+          padding-bottom: 0.4rem;
+          .title-container {
+            overflow: hidden;
+            white-space: wrap;
+            h1 {
+              width: 100%;
+              font-size: 2rem;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 6;
+              overflow: hidden;
+            }
+          }
+        }
         // Header background styles
         .header-background {
           background: linear-gradient(
@@ -272,8 +287,10 @@ const coverImage = cover || `/covers/${coverName}.webp`;
       h1 {
         color: var(--color-white);
         line-height: 1;
-        border-radius: 3rem;
         padding: 0;
+        @media (max-width: 650px) {
+          font-size: 2rem;
+        }
       }
     }
 

@@ -1,92 +1,129 @@
 ---
-const year = new Date().getFullYear()
-const coverImage = '/covers/footer.webp'
-const title = "Manuela Vos"
+const year = new Date().getFullYear();
+const coverImage = "/covers/footer.webp";
+const title = "Manuela Vos";
 ---
-<footer>
-    <div class="footer-image" style={`background-image: url(${coverImage})`}></div>
-    <div class="footer-background"></div>
-    <div class="footer-content">
-        { title && <h1>{title}</h1> }
-    </div>
-</footer>
-<style lang="sass">
-footer
-    margin-top: 6rem
-    position: relative
-    padding: 1rem
-    color: var(--color-white)
-    display: flex
-    place-content: center
-    min-height: 280px
-    border-top: 1px solid var(--color-grey)
-    .footer-image, .footer-background
-        position: absolute
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
-    .footer-image
-        opacity: 0.8
-        background-size: cover
-        background-position: center center
-        background-repeat: no-repeat
-    .footer-background
-        background: linear-gradient(to top, #CFD7DA 1.77%, rgba(217, 217, 217, 0) 80.92%)
-        &:after
-            content: ""
-            background-image: url(/graphics/bg-pattern-black@2x.png)
-            background-size: 6.1875rem 6.1875rem
-            display: block
-            position: absolute
-            top: 0
-            left: 0
-            width: 100%
-            height: 100%
-    .footer-content
-        position: relative
-        z-index: 2
-        width: 100%
-        max-width: var(--header-max-width)
-        display: flex
-        padding: 0 1rem
-        h1 
-            width: 100%
-            text-align: center
-            font-family: var(--font-family-alternate)
-            font-size: 3.2rem
-            letter-spacing: 1rem
-            background: linear-gradient(90deg, #ED0088 0%, #2C3A8A 100%)
-            background-clip: text
-            -webkit-background-clip: text
-            color: transparent
-        .links 
-            border-left: 1px solid var(--color-white)
-        .links
-            flex: 1
-            display: grid
-            grid-template-columns: repeat(auto, 1fr)
-            justify-content: flex-start
-            gap: 0.8rem
-            font-size: 0.9rem
-            padding: 0.4rem 2rem
-            a 
-                color: var(--color-white)
-                text-decoration: none
-                font-size: 1rem
-                font-weight: 500
-                letter-spacing: -0.6px
-                &:hover
-                    color: var(--color-theme-blue)
-            a + a 
-                border-left: 0px solid var(--color-white)
-                padding-left: 0rem
 
-    .credits
-        flex: 3
-        font-size: var(--font-size-credits)
-        text-align: right
-        display: flex
-        flex-direction: column
-        justify-content: flex-end
+<footer>
+  <div class="footer-image" style={`background-image: url(${coverImage})`}>
+  </div>
+  <div class="footer-background"></div>
+  <div class="footer-content">
+    {title && <h1>{title}</h1>}
+  </div>
+</footer>
+<style lang="scss">
+  footer {
+    margin-top: 6rem;
+    position: relative;
+    padding: 1rem;
+    color: var(--color-white);
+    display: flex;
+    place-content: center;
+    min-height: 280px;
+    border-top: 1px solid var(--color-grey);
+    margin-top: 6rem;
+    position: relative;
+    padding: 1rem;
+    color: var(--color-white);
+    display: flex;
+    place-content: center;
+    min-height: 280px;
+    border-top: 1px solid var(--color-grey);
+  }
+  .footer-image,
+  .footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .footer-image {
+    opacity: 0.8;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .footer-background {
+    background: linear-gradient(
+      to top,
+      #cfd7da 1.77%,
+      rgba(217, 217, 217, 0) 80.92%
+    );
+    &:after {
+      content: "";
+      background-image: url(/graphics/bg-pattern-black@2x.png);
+      background-size: 6.1875rem 6.1875rem;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--header-max-width);
+    display: flex;
+    padding: 0 1rem;
+    h1 {
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-family-alternate);
+      font-size: 3.2rem;
+      letter-spacing: 1rem;
+      background: linear-gradient(90deg, #ed0088 0%, #2c3a8a 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      @media (max-width: 500px) {
+        font-size: 2.6rem;
+      }
+      @media (max-width: 440px) {
+        font-size: 2rem;
+      }
+      @media (max-width: 380px) {
+        font-size: 1.6rem;
+      }
+      .links {
+        border-left: 1px solid var(--color-white);
+      }
+      .links {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(auto, 1fr);
+        justify-content: flex-start;
+        gap: 0.8rem;
+        font-size: 0.9rem;
+        padding: 0.4rem 2rem;
+        a {
+          color: var(--color-white);
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: 500;
+          letter-spacing: -0.6px;
+          &:hover {
+            color: var(--color-theme-blue);
+          }
+          a + a {
+            border-left: 0px solid var(--color-white);
+            padding-left: 0rem;
+          }
+        }
+      }
+    }
+  }
+
+  .credits {
+    flex: 3;
+    font-size: var(--font-size-credits);
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 </style>

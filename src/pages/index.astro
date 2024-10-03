@@ -66,7 +66,7 @@ const cover = "/covers/homepage.webp";
       <section class="text">
         <h2>Últimas apariciones en medios</h2>
         <ul class="blog">
-          {media.slice(0, 3).map((post) => {
+          {media.slice(0, 6).map((post) => {
             return (
               <CardLink
                 url={String(post.url)}
@@ -85,7 +85,7 @@ const cover = "/covers/homepage.webp";
       <section class="text">
         <h2>Últimas entradas del blog</h2>
         <ul class="blog">
-          {blog.slice(0, 3).map((post) => {
+          {blog.slice(0, 6).map((post) => {
             return (
               <CardLink
                 url={String(post.url)}

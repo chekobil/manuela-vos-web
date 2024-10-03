@@ -7,7 +7,7 @@ export const filterHtmlBlocks = (allBlocks) => {
 const getHtmlFromEmbedHtmlBlock = (string) => {
   const list = string.replaceAll("\n", "").split("<embed-html>");
   if (!list.length === 4) throw new Error("Wrong embed-html code");
-  return list[1];
+  return list[1] + "<p></p>";
 };
 
 export const parseHtmlBlocks = (allBlocks) => {

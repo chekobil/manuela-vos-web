@@ -1,6 +1,6 @@
 ---
 id: 059d8d9b-f9c5-4b34-a823-61785438e768
-edit: '2023-04-13T21:17:00.000Z'
+edit: '2024-10-03T11:35:00.000Z'
 author: MVos Team
 published: '2022-10-01'
 title: Charla en la IV Extremadura European Paracycling Cup

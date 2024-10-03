@@ -1,49 +1,54 @@
 ---
 export interface Route {
-    text: string
-    link: string
+  text: string;
+  link: string;
 }
 
 export interface Props {
-    video?: string
-	cover?: string
-    headerTitle?: string
-    description?: string
-    menu: Route[]
-    images: string[]
+  video?: string;
+  cover?: string;
+  headerTitle?: string;
+  description?: string;
+  menu: Route[];
+  images: string[];
 }
-import NavPills from '../components/NavPills.astro';
-const { video, cover, headerTitle, description, menu, images } = Astro.props.frontmatter || Astro.props;
-const coverImage = cover || '/cover_media.jpg';
+import NavPills from "../components/NavPills.astro";
+const { video, cover, headerTitle, description, menu, images } =
+  Astro.props.frontmatter || Astro.props;
+const coverImage = cover || "/cover_media.jpg";
 ---
 
 <header class="small">
-    <div class="header-background"></div>
-    <div class="header-menu">
-        <NavPills groups={menu} />
-    </div>
-    <div class="header-content">
-        { headerTitle && 
-            <div class="title-container">
-                <h1>{headerTitle}</h1>
-            </div>
-        }
-        { description && 
-            <div class="description-container">
-                <p>{description}</p>
-            </div>
-        }
-            <!-- <div class="credits-container">
+  <div class="header-background"></div>
+  <div class="header-menu">
+    <NavPills groups={menu} />
+  </div>
+  <div class="header-content">
+    {
+      headerTitle && (
+        <div class="title-container">
+          <h1>{headerTitle}</h1>
+        </div>
+      )
+    }
+    {
+      description && (
+        <div class="description-container">
+          <p>{description}</p>
+        </div>
+      )
+    }
+    <!-- <div class="credits-container">
                 <span>Escripo por</span>
                 <span>Fecha</span>
                 <span>Tags</span>
             </div> -->
-    </div>
+  </div>
 </header>
 <header class="fixed">
-    <div class="header-menu">
-        <NavPills groups={menu} />
-    </div>
+  <div class="header-menu">
+    <NavPills groups={menu} />
+  </div>
 </header>
 <!-- <div class="images-container">
     { images?.length && images.map( (img: string) => {
@@ -52,35 +57,35 @@ const coverImage = cover || '/cover_media.jpg';
 </div> -->
 
 <script>
-    const closes = document.querySelectorAll("[data-menu-close]")
-    const opens = document.querySelectorAll("[data-menu-open]")
-    const float = document.querySelector("[data-menu-floating]")
-    if (closes) {
-        closes.forEach( close => {
-            close.addEventListener("click", () => {
-                if (float) float.classList.add('close')
-                document.documentElement.classList.remove("noscroll")
-            })
-        })
-    }
-    if (opens) {
-        opens.forEach( open => {
-            open.addEventListener("click", () => {
-                if (float) float.classList.remove('close')
-                document.documentElement.classList.add("noscroll")
-            })
-        })
-    }
+  const closes = document.querySelectorAll("[data-menu-close]");
+  const opens = document.querySelectorAll("[data-menu-open]");
+  const float = document.querySelector("[data-menu-floating]");
+  if (closes) {
+    closes.forEach((close) => {
+      close.addEventListener("click", () => {
+        if (float) float.classList.add("close");
+        document.documentElement.classList.remove("noscroll");
+      });
+    });
+  }
+  if (opens) {
+    opens.forEach((open) => {
+      open.addEventListener("click", () => {
+        if (float) float.classList.remove("close");
+        document.documentElement.classList.add("noscroll");
+      });
+    });
+  }
 </script>
 
 <style lang="sass">
-.images-container
+  .images-container
     width: var(--main-max-width)
     display: flex
-    justify-content: flex-end 
+    justify-content: flex-end
     flex-wrap: wrap
     gap: 1rem
     img
-        width: 200px
-        object-fit: cover
+      width: 200px
+      object-fit: cover
 </style>

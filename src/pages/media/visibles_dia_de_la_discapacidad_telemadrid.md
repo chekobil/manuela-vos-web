@@ -1,6 +1,6 @@
 ---
 id: f16acc23-07a2-4e9c-ab03-23fab042afd5
-edit: '2024-10-03T09:18:00.000Z'
+edit: '2024-10-03T11:33:00.000Z'
 author: MVos Team
 published: '2022-12-11'
 title: 'Visibles: Día de la discapacidad. Telemadrid'

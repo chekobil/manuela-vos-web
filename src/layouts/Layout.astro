@@ -7,6 +7,8 @@ export interface Props {
   description?: string;
   header?: string;
   mainclass?: string;
+  images?: string[];
+  published?: string;
 }
 import { settings } from "../../scripts/settings";
 import Header from "../components/Header.astro";
@@ -21,6 +23,7 @@ const {
   description,
   images,
   mainclass = "",
+  published,
 } = Astro.props.frontmatter || Astro.props;
 let { header, headerTitle } = Astro.props.frontmatter || Astro.props;
 header = header || "small";
@@ -89,28 +92,24 @@ const menu: any = [
     <NavFloating groups={menu} />
     {
       header === "large" && (
-        <Header
-          menu={menu}
-          video={video}
-          cover={cover}
-          headerTitle={headerTitle}
-          description={description}
-        />
+        <Header {menu} {video} {cover} {headerTitle} {description} />
       )
     }
     {
       header === "small" && (
-        <HeaderSmall
-          menu={menu}
-          headerTitle={headerTitle}
-          description={description}
-          images={images}
-        />
+        <HeaderSmall {menu} {headerTitle} {description} {images} />
       )
     }
     <main class={mainclass}>
       <Sidebar />
       <section id="content">
+        {
+          header === "small" && (
+            <div class="pre-content">
+              <small>{published}</small>
+            </div>
+          )
+        }
         <slot />
       </section>
     </main>
@@ -163,8 +162,12 @@ const menu: any = [
     --color-white-80: rgba(255, 255, 255, 0.8)
     --color-white-90: rgba(255, 255, 255, 0.9)
     --color-black: #02031a
+    --color-black-60: rgba(2, 3, 26, 0.6)
+    --color-black-40: rgba(2, 3, 26, 0.4)
     --color-theme-orange: #f15937
     --color-theme-blue: #2c3a8a
+    --color-theme-blue-60: rgba(44, 58, 138, 0.6)
+    --color-theme-blue-40: rgba(44, 58, 138, 0.4)
     --color-theme-violet: #ed0088
     --font-family-alternate: "Bebas Neue"
   h1
@@ -294,6 +297,12 @@ const menu: any = [
         grid-template-columns: repeat(3, 1fr)
       @media (min-width: 1200px)
         grid-template-columns: repeat(3, 1fr)
+
+  .pre-content
+    display: flex
+    justify-content: flex-start
+    font-weight: 100
+    color: var(--color-theme-blue-60)
 
   .db-item
     overflow: hidden

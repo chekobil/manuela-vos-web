@@ -298,6 +298,24 @@ const menu: any = [
       @media (min-width: 1200px)
         grid-template-columns: repeat(3, 1fr)
 
+  .embed-content
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    gap: 1rem
+    & > iframe
+      // embed de Eurosport
+      width: 100% !important
+      height: auto !important
+    & > div
+      // embed de Antena3, es un div con un iframe dentro
+      width: 100% !important
+    .tiktok-embed
+      min-width: 300px !important
+      max-width: 320px !important
+      iframe
+        width: 100% !important
+        // no tocar height
   .pre-content
     display: flex
     justify-content: flex-start

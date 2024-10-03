@@ -88,55 +88,55 @@ const coverImage = cover || `/covers/${coverName}.webp`;
     --header-width: $header-width;
   }
 
+  // .floating-nav ~ header {
+  //   border: 3px solid greenyellow;
+  // }
+
   // Floating nav styles
-  .floating-nav:not(.close) ~ header {
+  .floating-nav:not(.close) + header {
+    border: none;
     pointer-events: none;
     z-index: 99;
     background: unset;
     background-color: transparent;
-    border: none;
     box-shadow: unset;
-
-    // Hide all content except pills
-    & > *:not(.header-menu) {
+    & > div:not(.header-menu) {
+      pointer-events: none;
       opacity: 0;
+    }
+    & > .header-menu .pills {
+      pointer-events: none;
+      opacity: 0;
+    }
+    & > .header-menu .pills[data-pills-open-close],
+    [data-header-icon] {
+      pointer-events: all;
+      opacity: 1;
+      background-color: transparent;
+    }
 
-      // Show pills with data-pills-open-close attribute
-      & > .header-menu .pills[data-pills-open-close],
-      [data-header-icon] {
-        pointer-events: all;
-        opacity: 1;
-        background-color: transparent;
-
-        // Pill styles
-        & .pill {
-          color: var(--color-white);
-          fill: var(--color-white);
-
-          &:hover {
-            fill: var(--color-theme-blue);
-          }
-
-          // Menu open/close styles
-          & > [data-menu-open] {
-            display: none;
-          }
-
-          & > [data-menu-close] {
-            display: flex;
-          }
-        }
+    // Pill styles
+    & .pill {
+      color: var(--color-white);
+      fill: var(--color-white);
+      &:hover {
+        fill: var(--color-theme-blue);
       }
-
-      // Logo container styles
-      & .logo-container {
-        & a.data-logo-color {
-          display: none;
-        }
-
-        & a.data-logo-white {
-          display: block;
-        }
+      // Menu open/close styles
+      &[data-menu-open] {
+        display: none;
+      }
+      &[data-menu-close] {
+        display: flex;
+      }
+    }
+    // Logo container styles
+    & .logo-container {
+      & a.data-logo-color {
+        display: none;
+      }
+      & a.data-logo-white {
+        display: block;
       }
     }
   }
@@ -152,40 +152,33 @@ const coverImage = cover || `/covers/${coverName}.webp`;
     border-bottom: 1px solid var(--color-grey-60);
     transition: margin-top 300ms ease;
     margin-top: -200px;
+  }
 
-    // Nav styles
-    nav {
-      padding: 0.6rem 1.5rem;
-      padding-bottom: 1rem;
-
-      // Pills styles
-      & .pills:not(.important) {
-        border-color: transparent;
-        background-color: var(--color-grey);
-
-        & .pill {
-          color: var(--color-theme-blue);
-
-          &.biografía,
-          &.contacto {
-            color: var(--color-theme-orange);
-
-            &:hover,
-            &.selected {
-              background-color: var(--color-white-80);
-            }
+  // Nav styles
+  nav {
+    padding: 0.6rem 1.5rem;
+    padding-bottom: 1rem;
+    & .pills:not(.important) {
+      border-color: transparent;
+      background-color: var(--color-grey-80);
+      & .pill {
+        color: var(--color-theme-blue);
+        &.biografía,
+        &.contacto {
+          color: var(--color-theme-orange);
+          &:hover,
+          &.selected {
+            background-color: var(--color-white-80);
           }
         }
       }
     }
   }
-
   // Body fixed styles
   body.fixed {
     header.fixed {
       margin-top: 0;
     }
-
     header:not(.fixed) {
       opacity: 0;
     }

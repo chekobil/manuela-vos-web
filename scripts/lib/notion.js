@@ -200,7 +200,7 @@ export function getMdImageData(imageLink, type) {
   const regexembed = /\[(image)\]\((.*)\)/;
   let regex = regeximage;
   if (type === "embed") regex = regexembed;
-  const regexFileName = /[\w\d-]+(.jpg|.jpeg|.png)/;
+  const regexFileName = /[\w\d-]+(.jpg|.jpeg|.png|.webp|.gif)/;
   const myMatch = imageLink.match(regex);
   let full, text, url, filename, ext;
   if (myMatch) {

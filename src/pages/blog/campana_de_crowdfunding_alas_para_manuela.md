@@ -4,7 +4,7 @@ edit: '2023-04-13T22:01:00.000Z'
 author: MVos Team
 published: '2022-12-01'
 title: Campaña de crowdfunding “Alas para Manuela”
-slug: campaña_de_crowdfunding_alas_para_manuela
+slug: campana_de_crowdfunding_alas_para_manuela
 layout: ../../layouts/LayoutReading.astro
 header: small
 cover: https://img.youtube.com/vi/YCPRx9cqV7Q/mqdefault.jpg

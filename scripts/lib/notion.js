@@ -4,9 +4,11 @@ import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import matter from "gray-matter";
 import yaml from "js-yaml";
+import { getCleanTitle, cleanString } from "./string.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 // import { dropboxLinksDownloadAndConvert } from "./dropbox.js";
+import { parseHtmlBlocks } from "../notion/htmlBlocks.js";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -27,8 +29,12 @@ const convertToMD = async (
   frontmatter = "",
   firstImageAsCover = false
 ) => {
-  const mdblocks = await n2m.pageToMarkdown(pageId);
+  let removedBlocks = 0;
+  const mdblocksRaw = await n2m.pageToMarkdown(pageId);
+  let mdblocks = mdblocksRaw.map((block, index) => ({ ...block, index }));
   // console.log("BLOCKS::", mdblocks);
+  // EMBED-HTML BLOCKS
+  mdblocks = parseHtmlBlocks(mdblocks);
   // IMAGENES
   // sea cual sea el link, se extrae el nombre de archivo y se cambia la extension a webp
   // la url es relativa a /, es decir, se espera que las imagenes esten en public, en formato webp
@@ -57,6 +63,7 @@ const convertToMD = async (
         }
         if (firstImageAsCover && blockIndex == 0) {
           mdblocks.splice(0, 1);
+          removedBlocks++;
         }
       }
     });
@@ -159,6 +166,13 @@ const convertToMD = async (
       }
     });
   }
+  if (mdblocks.length !== mdblocksRaw.length - removedBlocks)
+    throw new Error(
+      `Error. Parsed blocks must have the same length.
+      ${mdblocks.length - removedBlocks}
+      ? ${mdblocksRaw.length}
+      `
+    );
   const mdString = n2m.toMarkdownString(mdblocks);
   return frontmatter + mdString;
 };
@@ -229,7 +243,13 @@ function getMdLinkData(mdLink) {
   };
 }
 
+const checkDir = (dir) => {
+  if (fs.existsSync(dir)) return;
+  fs.mkdirSync(dir, { recursive: true });
+};
+
 function writeMdFile(name, dest, content, dryrun = true) {
+  checkDir(dest);
   //writing to file
   const cleanName = cleanString(name);
   const filename = cleanName + ".md";
@@ -278,7 +298,6 @@ function FrontmatterToJson(string) {
 
 function readMdFiles(dir) {
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
     return [];
   }
 
@@ -412,14 +431,6 @@ export const notionPageToMd = async (page, dryrun = true, writeall = false) => {
   }
 };
 
-export function cleanString(string) {
-  // elimina lo que no sea, letra, numero o guion bajo
-  let cleanString = string.trim().replace(/[^\w\d\sñ_]/g, "");
-  // espacios por guion bajo
-  cleanString = cleanString.replaceAll(/ /g, "_");
-  return cleanString;
-}
-
 export const notionDbToMdFiles = async (
   db,
   dryrun = true,
@@ -469,7 +480,7 @@ export const notionDbToMdFiles = async (
       const props = p.properties;
       const published = props[keyDate]?.date?.start || "";
       const title = props[keyTitle].title[0].plain_text;
-      const slug = cleanString(title).toLowerCase();
+      const slug = getCleanTitle(title);
       const page = {
         id: p.id,
         edit: p.last_edited_time,

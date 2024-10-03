@@ -1,32 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import Layout from "../layouts/Layout.astro";
 let posts;
 try {
-	posts = await Astro.glob("./projects/*.md")
-} catch(e) {
-	console.log("Error. NO hay archivos md en competition");
+  posts = await Astro.glob("./projects/*.md");
+} catch (e) {
+  console.log("Error. NO hay archivos md en competition");
 }
-const title = "Proyectos"
-const cover = `/covers/${title.toLowerCase()}.webp`
-const description = ""
+const title = "Proyectos";
+const cover = `/covers/${title.toLowerCase()}.webp`;
+const description = "";
 ---
+
 <Layout header="large" title={title} cover={cover} description={description}>
   <ul class="blog">
     {
-      posts?.length && posts.map(post => {
-        return (
-          <a href={post.url} class="db-item">
-            <div class="item-image">
-                  <img src={post.frontmatter.cover} alt="" />
-                </div>
-                <div class="item-content">
-                  <div class="title">{post.frontmatter.title}</div>
-                  <div class="date">{post.frontmatter.published}</div>
-                </div>
-          </a>
-        )
-      })
+      posts?.length &&
+        posts.map((post) => {
+          return (
+            <a href={post.url} class="db-item">
+              <div class="item-image">
+                <img src={post.frontmatter.cover} alt="" />
+              </div>
+              <div class="item-content">
+                <div class="title">{post.frontmatter.title}</div>
+                <div class="date">{post.frontmatter.published}</div>
+              </div>
+            </a>
+          );
+        })
     }
-    { !posts?.length && <p>No hay contenido</p> }
+    {!posts?.length && <p>No hay contenido</p>}
   </ul>
 </Layout>

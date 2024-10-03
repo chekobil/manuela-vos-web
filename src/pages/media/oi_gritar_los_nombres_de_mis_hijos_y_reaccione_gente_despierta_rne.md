@@ -1,10 +1,10 @@
 ---
 id: 04efbb1e-5000-4755-bb2b-ef36dc16d3ed
-edit: '2024-10-02T05:56:00.000Z'
+edit: '2024-10-03T09:36:00.000Z'
 author: MVos Team
 published: '2022-07-14'
-title: Entrevista en “Gente despierta” de RNE
-slug: entrevista_en_gente_despierta_de_rne
+title: '"Oí gritar los nombres de mis hijos y reaccioné". Gente despierta RNE'
+slug: oi_gritar_los_nombres_de_mis_hijos_y_reaccione_gente_despierta_rne
 layout: ../../layouts/LayoutReading.astro
 header: small
 cover: /images/manu-radio-silla.webp

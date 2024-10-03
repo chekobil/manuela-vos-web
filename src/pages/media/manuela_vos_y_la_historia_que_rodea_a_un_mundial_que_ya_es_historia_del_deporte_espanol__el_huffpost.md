@@ -7,7 +7,7 @@ title: >-
   Manuela Vos y la historia que rodea a un Mundial que ya es historia del
   deporte español.  El HuffPost.
 slug: >-
-  manuela_vos_y_la_historia_que_rodea_a_un_mundial_que_ya_es_historia_del_deporte_español__el_huffpost
+  manuela_vos_y_la_historia_que_rodea_a_un_mundial_que_ya_es_historia_del_deporte_espanol__el_huffpost
 layout: ../../layouts/LayoutReading.astro
 header: small
 cover: /images/manuela-vos-con-su-medalla-de-oro-en-el-mundial-de-zurich.webp

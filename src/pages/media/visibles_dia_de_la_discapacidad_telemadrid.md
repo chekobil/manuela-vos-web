@@ -1,10 +1,10 @@
 ---
 id: f16acc23-07a2-4e9c-ab03-23fab042afd5
-edit: '2024-10-02T06:54:00.000Z'
+edit: '2024-10-03T09:18:00.000Z'
 author: MVos Team
 published: '2022-12-11'
-title: Entrevista en Telemadrid
-slug: entrevista_en_telemadrid
+title: 'Visibles: Día de la discapacidad. Telemadrid'
+slug: visibles_dia_de_la_discapacidad_telemadrid
 layout: ../../layouts/LayoutReading.astro
 header: small
 cover: /images/telemadrid-silla.webp

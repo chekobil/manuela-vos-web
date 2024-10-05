@@ -75,5 +75,5 @@ export const settings = {
   dropboxFolder: "/FotosWeb",
   imagesDestFolder: `${publicDir}/images`,
   coversFolder: `${publicDir}/covers`,
-  appendTitle: "Manuela Vos - ",
+  appendTitle: "Manuela Vos",
 };

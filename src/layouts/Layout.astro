@@ -28,7 +28,9 @@ const {
 let { header, headerTitle } = Astro.props.frontmatter || Astro.props;
 header = header || "small";
 if (!headerTitle) headerTitle = title;
-
+const fullTitle = title
+  ? `${settings.appendTitle} - ${title}`
+  : settings.appendTitle;
 const menu: any = [
   [
     {
@@ -86,7 +88,7 @@ const menu: any = [
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
-    <title>{settings.appendTitle}{title}</title>
+    <title>{fullTitle}</title>
   </head>
   <body>
     <NavFloating groups={menu} />

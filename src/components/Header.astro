@@ -45,7 +45,7 @@ const coverImage = cover || `/covers/${coverName}.webp`;
     {
       description && (
         <div class="description-container">
-          <p>{description}</p>
+          <p set:html={description} />
         </div>
       )
     }

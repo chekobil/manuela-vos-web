@@ -20,7 +20,7 @@
     "repo:push": "bash ./scripts/build-static-push.sh",
     "hosting:push": "cd ./_ANSIBLE && ansible-playbook manuelavos-static-ansible.yml && cd ..",
     "update:all": "npm run notion:pull && npm run notion:push && npm run repo:push && npm run hosting:push",
-    "update:all:nopull": "npm run notion:push && npm run repo:push && npm run hosting:push"
+    "update:all:nopull": "npm run repo:push && npm run hosting:push"
   },
   "dependencies": {
     "@astrojs/image": "^0.16.1",

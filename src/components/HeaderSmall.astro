@@ -18,11 +18,6 @@ const { video, cover, headerTitle, description, menu, images } =
 const coverImage = cover || "/cover_media.jpg";
 ---
 
-<header class="fixed">
-  <div class="header-menu">
-    <NavPills groups={menu} />
-  </div>
-</header>
 <header class="small">
   <div class="header-background"></div>
   <div class="header-menu">
@@ -50,7 +45,11 @@ const coverImage = cover || "/cover_media.jpg";
             </div> -->
   </div>
 </header>
-
+<header class="fixed">
+  <div class="header-menu">
+    <NavPills groups={menu} />
+  </div>
+</header>
 <!-- <div class="images-container">
     { images?.length && images.map( (img: string) => {
         return <img src={img} />

@@ -163,9 +163,13 @@ const currentPage = url.pathname.split("/")[1];
         }
       }
     }
-    [data-menu-open],
-    [data-menu-close] {
+    &[data-menu-open],
+    &[data-menu-close] {
       cursor: pointer;
+    }
+    &[data-menu-close] {
+      border: 1px solid greenyellow;
+      padding-top: calc(0.6rem + 5px);
     }
   }
 </style>

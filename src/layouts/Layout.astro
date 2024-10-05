@@ -92,12 +92,16 @@ const menu: any = [
     <NavFloating groups={menu} />
     {
       header === "large" && (
-        <Header {menu} {video} {cover} {headerTitle} {description} />
+        <>
+          <Header {menu} {video} {cover} {headerTitle} {description} />
+        </>
       )
     }
     {
       header === "small" && (
-        <HeaderSmall {menu} {headerTitle} {description} {images} />
+        <>
+          <HeaderSmall {menu} {headerTitle} {description} {images} />
+        </>
       )
     }
     <main class={mainclass}>

@@ -80,16 +80,13 @@ const coverImage = cover || `/covers/${coverName}.webp`;
 </script>
 
 <style is:global lang="scss">
-  // Variables
   $header-width: 500px;
-
-  // Root styles
   :root {
     --header-width: $header-width;
   }
 
-  // .floating-nav ~ header {
-  //   border: 3px solid greenyellow;
+  // .floating-nav + header {
+  //   border: 0 solid greenyellow;
   // }
 
   // Floating nav styles
@@ -132,6 +129,9 @@ const coverImage = cover || `/covers/${coverName}.webp`;
     }
     // Logo container styles
     & .logo-container {
+      // El logo de color tiene un borde que el blanco no tiene
+      padding-top: 5px;
+      padding-bottom: 5px;
       & a.data-logo-color {
         display: none;
       }

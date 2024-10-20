@@ -7,6 +7,7 @@ export interface Props {
 }
 
 const { img, title, date, url } = Astro.props;
+import { formatDate } from "../helpers/dates";
 ---
 
 <a href={url} class="db-item">
@@ -14,7 +15,7 @@ const { img, title, date, url } = Astro.props;
     <img src={img} alt="" />
   </div>
   <div class="item-content">
-    <div class="date">{date}</div>
+    <div class="date">{formatDate(date)}</div>
     <div class="title">{title}</div>
   </div>
 </a>

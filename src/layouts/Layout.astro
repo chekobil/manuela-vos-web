@@ -16,6 +16,7 @@ import Sidebar from "../components/Sidebar.astro";
 import HeaderSmall from "../components/HeaderSmall.astro";
 import NavFloating from "../components/NavFloating.astro";
 import Footer from "../components/Footer.astro";
+import { formatDate } from "../helpers/dates";
 const {
   video,
   cover,
@@ -112,7 +113,7 @@ const menu: any = [
         {
           header === "small" && (
             <div class="pre-content">
-              <small>{published}</small>
+              <small>{formatDate(published)}</small>
             </div>
           )
         }
@@ -262,8 +263,6 @@ const menu: any = [
         gap: 0.8rem
       #content
         border: 0px solid orange
-      #sidebar
-        border: 0px solid #efefef
       &.reading
         max-width: var(--reading-max-width)
       .main-title
@@ -286,6 +285,9 @@ const menu: any = [
     display: grid
     grid-template-columns: 1fr
     gap: 1rem
+    &.event-list
+      display: column
+      gap: 0.2rem
     &.blog
       grid-template-columns: 1fr
       gap: 1.6rem 0.8rem
@@ -327,6 +329,7 @@ const menu: any = [
     justify-content: flex-start
     font-weight: 100
     color: var(--color-theme-blue-60)
+    margin-bottom: 1rem
 
   .db-item
     overflow: hidden

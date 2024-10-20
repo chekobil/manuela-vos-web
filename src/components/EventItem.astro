@@ -1,0 +1,59 @@
+---
+import { formatDate } from "../helpers/dates";
+export interface Props {
+  title: string;
+  start: string;
+  end: string;
+  city: string;
+  venue: string;
+  url: string;
+}
+
+const { title, start, end, city, venue, url } = Astro.props;
+---
+
+<a href={url} class="event-container">
+  <div class="dates">
+    {formatDate(start)} al {formatDate(end)}
+  </div>
+  <div class="title">{title}</div>
+  <div class="venue">{venue} - {city}</div>
+</a>
+
+<style lang="scss">
+  .event-container {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem 1rem;
+    flex-wrap: wrap;
+    text-transform: none;
+    text-decoration: none;
+    transition: background-color 300ms ease-in-out;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    &:hover {
+      background-color: var(--color-grey-60);
+    }
+    > .dates {
+      font-size: 0.9rem;
+      font-weight: 100;
+      color: var(--color-theme-orange);
+      padding-left: 0.6rem;
+      padding-right: 1.2rem;
+    }
+    > .title,
+    > .city,
+    > .venue {
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-align: left;
+      line-height: 1.2;
+      color: var(--color-theme-blue);
+    }
+    > .city,
+    > .venue {
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 id: 1136904b-d832-80f6-afe9-c4d8b212c2bc
-edit: '2024-10-03T11:33:00.000Z'
+edit: '2024-10-03T18:50:00.000Z'
 author: MVos Team
 published: '2024-09-28'
 title: >-
@@ -18,8 +18,8 @@ images:
 La ciclista nacida en Países Bajos ha dado a España el primer mundial femenino en ciclismo adaptado. Un accidente le dejó tetrapléjica hace tres años y tras dos meses en la UCI reinició una vida que encontró respuesta en el deporte y el teatro. "Confío en que sirva para más mujeres", explica a 'El HuffPost' aún emocionada.
 
 
-<figure><img src="/images/manuela-vos-con-su-medalla-de-oro-en-el-mundial-de-zurich.webp" alt=""><figcaption align="left"></figcaption></figure>
-
-
 Lee la entrevista completa en [El HuffPost](https://www.huffingtonpost.es/deporte/manuela-vos-historia-rodea-mundial-historia-deporte-espanol.html)
+
+
+<figure><img src="/images/manuela-vos-con-su-medalla-de-oro-en-el-mundial-de-zurich.webp" alt=""><figcaption align="left"></figcaption></figure>
 

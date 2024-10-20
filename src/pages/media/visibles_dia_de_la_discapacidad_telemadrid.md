@@ -1,6 +1,6 @@
 ---
 id: f16acc23-07a2-4e9c-ab03-23fab042afd5
-edit: '2024-10-03T11:33:00.000Z'
+edit: '2024-10-20T12:11:00.000Z'
 author: MVos Team
 published: '2022-12-11'
 title: 'Visibles: Día de la discapacidad. Telemadrid'
@@ -18,7 +18,7 @@ Manuela fué entrevistada en el programa **Visibles** de Telemadrid, con motivo 
 Aquí puedes ver el programa completo (Manuela aparece a partir del minuto 46)
 
 
-<iframe src='http://players.brightcove.net/104403117001/Lti7DzQ054_default/index.html?videoId=6316122537112' allowfullscreen frameborder=0></iframe>
+<iframe src='https://players.brightcove.net/104403117001/Lti7DzQ054_default/index.html?videoId=6316122537112' allowfullscreen frameborder=0></iframe>
 
 
 [**“Visibles en Madrid: Día de la discapacidad”**](https://www.telemadrid.es/programas/visibles/Visibles-Dia-de-la-discapacidad-2-2508669152--20221124115200.html)

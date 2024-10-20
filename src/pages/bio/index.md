@@ -1,6 +1,6 @@
 ---
 id: 96dbfba0-2beb-447b-b47f-ad90e1c8418e
-edit: '2024-10-02T05:56:00.000Z'
+edit: '2024-10-07T15:13:00.000Z'
 author: MVos Team
 published: '2023-03-01'
 title: Biografía

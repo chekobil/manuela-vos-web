@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CardLink from "../components/CardLink.astro";
+import EventItem from "../components/EventItem.astro";
 const logoheight = 136;
 const height = logoheight + "px";
 let media;
@@ -29,6 +30,19 @@ try {
 } catch (e) {
   console.log("Error. NO hay archivos md en blog");
 }
+let events;
+try {
+  events = await Astro.glob("./events/*.md");
+  events.sort(
+    (a: any, b: any) =>
+      Date.parse(a.frontmatter.start) - Date.parse(b.frontmatter.start)
+  );
+  events = events.filter(
+    (ev: any) => Date.parse(ev.frontmatter.end) > Date.now()
+  );
+} catch (e) {
+  console.log("Error. NO hay archivos md en media");
+}
 const title = "";
 const headerTitle = "High with a little help from my friends";
 const description = "";
@@ -55,6 +69,27 @@ const cover = "/covers/homepage.webp";
                 <div class="title">{post.frontmatter.title}</div>
                 <div class="date">{post.frontmatter.published}</div>
               </a>
+            );
+          })}
+        </ul>
+      </section>
+    )
+  }
+  {
+    events?.length && (
+      <section class="text">
+        <h2>Próximos eventos</h2>
+        <ul class="event-list">
+          {events.map((post) => {
+            return (
+              <EventItem
+                title={post.frontmatter.title}
+                start={post.frontmatter.start}
+                end={post.frontmatter.end}
+                city={post.frontmatter.city}
+                venue={post.frontmatter.venue}
+                url={post.frontmatter.url}
+              />
             );
           })}
         </ul>

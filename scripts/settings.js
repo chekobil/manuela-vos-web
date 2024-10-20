@@ -34,6 +34,14 @@ export const dinamycContent = [
     dest: `${baseUrl}/blog`,
     layout: `${layoutsDir}/LayoutReading.astro`,
   },
+  {
+    ref: "Agenda",
+    url: "https://www.notion.so/manu-vos-web/1256904bd83280f59b81e60fc28c01ed?v=ba1be67dd243422c960c34ccfcbb9236",
+    notionDbId: "1256904b-d832-80f5-9b81-e60fc28c01ed",
+    author: "MVos Team",
+    dest: `${baseUrl}/events`,
+    layout: `${layoutsDir}/LayoutReading.astro`,
+  },
 ];
 
 export const staticPages = [

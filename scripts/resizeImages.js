@@ -4,7 +4,7 @@ import { settings } from "./settings.js";
 import { convertirImagenWebp } from "./lib/images.js";
 import { changeFileExtension, deleteFile } from "./lib/files.js";
 
-const extensions = ["jpg", "jpeg", "png", "gif"];
+const extensions = ["jpg", "jpeg", "png", "gif", "avif"];
 
 const dirCovers = settings.coversFolder;
 const dirImages = settings.imagesDestFolder;

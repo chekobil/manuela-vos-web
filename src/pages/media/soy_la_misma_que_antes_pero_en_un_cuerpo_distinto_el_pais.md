@@ -7,6 +7,7 @@ title: “Soy la misma que antes pero en un cuerpo distinto”. El Pais
 slug: soy_la_misma_que_antes_pero_en_un_cuerpo_distinto_el_pais
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-babelia.webp
 images:
   - /images/manu-babelia.webp

@@ -7,6 +7,7 @@ title: Así se convirtió Manuela Vos en campeona del mundo. Las Tardes de RNE
 slug: asi_se_convirtio_manuela_vos_en_campeona_del_mundo_las_tardes_de_rne
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-rtve.webp
 images:
   - /images/manu-rtve.webp

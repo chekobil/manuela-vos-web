@@ -10,6 +10,7 @@ slug: >-
   manuela_el_vuelo_infinito_la_obra_teatral_sobre_la_campeona_del_mundo_en_ciclismo_paralimpico_no_hay_limites_telecinco
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-ensayo.webp
 images:
   - /images/manu-ensayo.webp

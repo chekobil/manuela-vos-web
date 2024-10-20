@@ -7,6 +7,7 @@ title: 'Visibles: Día de la discapacidad. Telemadrid'
 slug: visibles_dia_de_la_discapacidad_telemadrid
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/telemadrid-silla.webp
 images:
   - /images/telemadrid-silla.webp

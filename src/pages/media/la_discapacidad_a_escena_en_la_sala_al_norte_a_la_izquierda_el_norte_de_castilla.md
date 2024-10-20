@@ -10,6 +10,7 @@ slug: >-
   la_discapacidad_a_escena_en_la_sala_al_norte_a_la_izquierda_el_norte_de_castilla
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-nortedecastilla.webp
 images:
   - /images/manu-nortedecastilla.webp

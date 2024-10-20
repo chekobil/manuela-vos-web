@@ -7,7 +7,7 @@ title: '"He tardado dos años en sentirme otra vez yo". '
 slug: he_tardado_dos_anos_en_sentirme_otra_vez_yo
 layout: ../../layouts/LayoutReading.astro
 header: small
-modified: true
+url: undefined
 cover: /images/manu-20minutos-2.webp
 images:
   - /images/manu-20minutos-2.webp

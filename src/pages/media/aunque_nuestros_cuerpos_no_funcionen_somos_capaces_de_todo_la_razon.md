@@ -7,6 +7,7 @@ title: '"Aunque nuestros cuerpos no funcionen, somos capaces de todo". La Razón
 slug: aunque_nuestros_cuerpos_no_funcionen_somos_capaces_de_todo_la_razon
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-larazon.webp
 images:
   - /images/manu-larazon.webp

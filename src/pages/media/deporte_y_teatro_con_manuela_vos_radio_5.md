@@ -7,6 +7,7 @@ title: Deporte y teatro con Manuela Vos. Radio 5
 slug: deporte_y_teatro_con_manuela_vos_radio_5
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-radio5.webp
 images:
   - /images/manu-radio5.webp

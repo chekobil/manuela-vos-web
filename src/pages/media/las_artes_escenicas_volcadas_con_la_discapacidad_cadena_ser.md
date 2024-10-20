@@ -7,6 +7,7 @@ title: Las artes escénicas volcadas con la discapacidad. Cadena Ser
 slug: las_artes_escenicas_volcadas_con_la_discapacidad_cadena_ser
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-cadenaser.webp
 images:
   - /images/manu-cadenaser.webp

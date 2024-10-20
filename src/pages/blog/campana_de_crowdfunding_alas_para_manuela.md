@@ -1,12 +1,14 @@
 ---
 id: 81b2dcd5-99ad-40e0-8475-c729b8985190
-edit: '2023-04-13T22:01:00.000Z'
+edit: '2024-10-20T15:24:00.000Z'
 author: MVos Team
 published: '2022-12-01'
 title: Campaña de crowdfunding “Alas para Manuela”
 slug: campana_de_crowdfunding_alas_para_manuela
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
+modified: true
 cover: https://img.youtube.com/vi/YCPRx9cqV7Q/mqdefault.jpg
 images:
   - https://img.youtube.com/vi/YCPRx9cqV7Q/mqdefault.jpg

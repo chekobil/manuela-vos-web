@@ -9,6 +9,7 @@ title: >-
 slug: manuela_vos_primera_espanola_campeona_del_mundo_en_ciclismo_paralimpico_relevo
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-bici-pedaleando.webp
 images:
   - /images/manu-bici-pedaleando.webp

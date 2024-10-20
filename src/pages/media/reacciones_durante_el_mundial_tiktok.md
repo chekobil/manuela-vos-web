@@ -7,6 +7,7 @@ title: Reacciones durante el mundial. TikTok
 slug: reacciones_durante_el_mundial_tiktok
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-medalla-oro.webp
 images:
   - /images/manu-medalla-oro.webp

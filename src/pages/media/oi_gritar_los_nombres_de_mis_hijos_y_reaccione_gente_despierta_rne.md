@@ -7,6 +7,7 @@ title: '"Oí gritar los nombres de mis hijos y reaccioné". Gente despierta RNE'
 slug: oi_gritar_los_nombres_de_mis_hijos_y_reaccione_gente_despierta_rne
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-radio-silla.webp
 images:
   - /images/manu-radio-silla.webp

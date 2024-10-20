@@ -10,6 +10,7 @@ slug: >-
   manuela_vos_campeona_del_mundo_con_56_anos_primera_mujer_espanola_en_conseguirlo
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-carrera-eurosport.webp
 images:
   - /images/manu-carrera-eurosport.webp

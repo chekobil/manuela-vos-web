@@ -10,6 +10,7 @@ slug: >-
   la_historia_real_de_una_mujer_a_la_que_la_vida_le_da_un_vuelco_completo_en_tres_segundos
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manuela-surge-madrid.webp
 images:
   - /images/manuela-surge-madrid.webp

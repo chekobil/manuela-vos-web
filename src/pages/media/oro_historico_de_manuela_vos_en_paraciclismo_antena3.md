@@ -7,6 +7,7 @@ title: Oro histórico de Manuela Vos en paraciclismo. Antena3
 slug: oro_historico_de_manuela_vos_en_paraciclismo_antena3
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manuela-vos-podio_103.webp
 images:
   - /images/manuela-vos-podio_103.webp

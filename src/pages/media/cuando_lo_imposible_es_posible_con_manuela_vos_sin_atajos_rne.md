@@ -7,6 +7,7 @@ title: Cuando lo imposible, es posible, con Manuela Vos. Sin Atajos RNE
 slug: cuando_lo_imposible_es_posible_con_manuela_vos_sin_atajos_rne
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-rtve-low.webp
 images:
   - /images/manu-rtve-low.webp

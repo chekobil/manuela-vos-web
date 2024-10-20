@@ -7,6 +7,7 @@ title: 'Crítica de la obra de teatro ''Manuela, el vuelo infinito'': un canto a
 slug: critica_de_la_obra_de_teatro_manuela_el_vuelo_infinito_un_canto_a_la_vida
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-poster-vueloinfinito.webp
 images:
   - /images/manu-poster-vueloinfinito.webp

@@ -7,6 +7,7 @@ title: Charla en la IV Extremadura European Paracycling Cup
 slug: charla_en_la_iv_extremadura_european_paracycling_cup
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: https://img.youtube.com/vi/LZ_3DC1Hxjs/mqdefault.jpg
 images:
   - https://img.youtube.com/vi/LZ_3DC1Hxjs/mqdefault.jpg

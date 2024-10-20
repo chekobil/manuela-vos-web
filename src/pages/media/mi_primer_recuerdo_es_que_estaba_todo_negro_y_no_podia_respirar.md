@@ -7,6 +7,7 @@ title: “Mi primer recuerdo es que estaba todo negro y no podía respirar”
 slug: mi_primer_recuerdo_es_que_estaba_todo_negro_y_no_podia_respirar
 layout: ../../layouts/LayoutReading.astro
 header: small
+url: undefined
 cover: /images/manu-20minutos.webp
 images:
   - /images/manu-20minutos.webp

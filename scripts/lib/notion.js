@@ -466,8 +466,23 @@ export const notionDbToMdFiles = async (
     const keyDate = Object.keys(response.results[0].properties).find((k) =>
       k.includes("Fecha")
     );
+    // La propiedad que incluye el titulo, debe llamarse Titulo, por defecto cuando se crea un calendario por ejemplo, sus opaginas hijas tiene el titulo en la propiedad Nombre
     const keyTitle = Object.keys(response.results[0].properties).find((k) =>
       k.includes("Titulo")
+    );
+    // Paginas de un calendario tienen estado
+    const keyStatus = Object.keys(response.results[0].properties).find((k) =>
+      k.includes("Estado")
+    );
+    // Paginas de calendario, tienen Ciudad y Lugar
+    const keyCity = Object.keys(response.results[0].properties).find((k) =>
+      k.includes("Ciudad")
+    );
+    const keyVenue = Object.keys(response.results[0].properties).find((k) =>
+      k.includes("Lugar")
+    );
+    const keyUrl = Object.keys(response.results[0].properties).find((k) =>
+      k.includes("URL")
     );
     // Los que tengan fecha de publicación
     const ready = response.results.filter((p) => {
@@ -475,11 +490,39 @@ export const notionDbToMdFiles = async (
     });
     // const ready = response.results
     // parseado con las props que me interesan
+    // PAginas dentro de un calendario
+    /*
+  Fecha: {
+    id: '%3FNXM',
+    type: 'date',
+    date: { start: '2024-10-15', end: '2024-10-19', time_zone: null }
+  },
+  Estado: {
+    id: 'BtTW',
+    type: 'status',
+    status: {
+      id: 'e16ada3e-09e5-47f6-a9be-bb0166d845b6',
+      name: 'Sin empezar',
+      color: 'default'
+    }
+  },
+  Asignar: { id: 'ETeE', type: 'people', people: [] },
+  Ciudad: { id: 'fbZM', type: 'rich_text', rich_text: [] },
+  Titulo: { id: 'title', type: 'title', title: [ [Object] ] }
+    */
     const parsed = ready.map(async (p) => {
       // console.log("PAGE::", p)
       const props = p.properties;
       const published = props[keyDate]?.date?.start || "";
-      const title = props[keyTitle].title[0].plain_text;
+      //
+      const start = props[keyDate]?.date?.start || "";
+      const end = props[keyDate]?.date?.end || "";
+      const status = props[keyStatus]?.status?.name || "";
+      const city = props[keyCity]?.rich_text?.[0]?.plain_text ?? "";
+      const venue = props[keyVenue]?.rich_text?.[0]?.plain_text ?? "";
+      const url = encodeURI(props[keyUrl]?.url);
+      //
+      const title = props[keyTitle]?.title?.[0].plain_text ?? "-";
       const slug = getCleanTitle(title);
       const page = {
         id: p.id,
@@ -491,6 +534,15 @@ export const notionDbToMdFiles = async (
         layout,
         header: "small",
       };
+      // Paginas hijas de un calendario
+      if (start && end) {
+        page.start = start;
+        page.end = end;
+      }
+      if (status) page.status = status;
+      if (city) page.city = city;
+      if (venue) page.venue = venue;
+      if (url) page.url = url;
       // mismo archivo ya compilado
       const publishedFileIndex = destFiles.findIndex(
         (f) => f.data.id == page.id

@@ -99,7 +99,9 @@ const cover = "/covers/homepage.webp";
   {
     media?.length && (
       <section class="text">
-        <h2>Últimas apariciones en medios</h2>
+        <h2>
+          Últimas apariciones en medios <a href="/media"> Ver todas</a>
+        </h2>
         <ul class="blog">
           {media.slice(0, 6).map((post) => {
             return (
@@ -118,7 +120,9 @@ const cover = "/covers/homepage.webp";
   {
     blog?.length && (
       <section class="text">
-        <h2>Últimas entradas del blog</h2>
+        <h2>
+          Últimas entradas del blog <a href="/blog"> Ver todas</a>
+        </h2>
         <ul class="blog">
           {blog.slice(0, 6).map((post) => {
             return (
@@ -196,6 +200,21 @@ const cover = "/covers/homepage.webp";
       font-weight: 300
       position: relative
       margin-bottom: 2rem
+      display: flex
+      justify-content: space-between
+      align-items: center
+      a
+        border-radius: 0.8rem
+        min-width: max-content
+        flex: 0
+        padding: 0.3rem 1.2rem
+        font-size: 0.8rem
+        font-weight: 100
+        text-decoration: none
+        color: var(--color-theme-blue)
+        transition: background-color 300ms ease-in-out
+        &:hover
+          background-color: var(--color-grey-60)
       &:before
         content: ""
         position: absolute

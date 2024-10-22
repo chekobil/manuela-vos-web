@@ -1,12 +1,13 @@
 ---
 id: 96dbfba0-2beb-447b-b47f-ad90e1c8418e
-edit: '2024-10-07T15:13:00.000Z'
+edit: '2024-10-22T10:35:00.000Z'
 author: MVos Team
 published: '2023-03-01'
-title: Biografía
+title: Quién es Manuela Vos
 slug: index
 layout: ../../layouts/LayoutReading.astro
 header: large
+modified: true
 cover: /images/manu_bio_brazos.webp
 images:
   - /images/manu_bio_brazos.webp
@@ -16,7 +17,7 @@ images:
 Conoce a Manuela Vos, una apasionada del deporte, la naturaleza y la aventura. 
 
 
-Nacida en Holanda en 1968, se trasladó a España en 1995, donde reside actualmente. Manuela ha recorrido el mundo participando en maratónes e Ironman, así como escalando montañas espectaculares.
+Nacida en Holanda en 1968, se trasladó a España en 1995, donde reside actualmente. Manuela ha recorrido el mundo participando en maratones e Ironman, así como escalando montañas espectaculares.
 
 
 Desafortunadamente, en 2021, un accidente mientras escalaba en Picos de Europa la dejó tetrapléjica. A pesar de la dura recuperación y del difícil proceso de adaptación, Manuela ha demostrado una enorme fuerza de voluntad y una pasión inquebrantable por seguir adelante y superarse a sí misma. Ahora, sus montañas son aún más altas, sus carreras más desafiantes y sus travesías a nado más prolongadas y profundas, pero nada de eso la detiene.

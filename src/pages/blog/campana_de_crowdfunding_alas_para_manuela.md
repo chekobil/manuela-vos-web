@@ -8,7 +8,6 @@ slug: campana_de_crowdfunding_alas_para_manuela
 layout: ../../layouts/LayoutReading.astro
 header: small
 url: undefined
-modified: true
 cover: https://img.youtube.com/vi/YCPRx9cqV7Q/mqdefault.jpg
 images:
   - https://img.youtube.com/vi/YCPRx9cqV7Q/mqdefault.jpg

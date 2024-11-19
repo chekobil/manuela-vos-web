@@ -1,0 +1,42 @@
+---
+export interface Props {
+  name?: string;
+  text?: string;
+  logo?: string;
+  url?: string;
+}
+const { name, logo, url } = Astro.props;
+const logoPath = `/sponsors/${logo}.webp`;
+---
+
+<a href={url} target="_blank" class="sponsor-item">
+  <img class="sponsor-logo" src={logoPath} alt={name} />
+  <h4>{name}</h4>
+</a>
+
+<style lang="scss">
+  .sponsor-item {
+    --logo-size: 150px;
+    --container-size: calc(30px + var(--logo-size));
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: var(--container-size);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+      .sponsor-logo {
+        opacity: 0.8;
+      }
+    }
+    .sponsor-logo {
+      min-width: var(--logo-size);
+      max-width: var(--logo-size);
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+</style>

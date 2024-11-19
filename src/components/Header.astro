@@ -81,6 +81,11 @@ const coverImage = cover || `/covers/${coverName}.webp`;
 
 <style is:global lang="scss">
   $header-width: 500px;
+  $breakpoint-desktop-xl: 1601px;
+  $breakpoint-desktop-lg: 1600px;
+  $breakpoint-desktop: 1000px;
+  $breakpoint-tablet: 650px;
+  $breakpoint-mobile: 450px;
   :root {
     --header-width: $header-width;
   }
@@ -198,40 +203,35 @@ const coverImage = cover || `/covers/${coverName}.webp`;
     transition: opacity 300ms ease;
     opacity: 1;
 
-    // Media queries
-    @media (min-width: 1601px) {
+    @media (min-width: $breakpoint-desktop-xl) {
       height: 700px;
     }
-
-    @media (max-width: 1600px) {
+    @media (max-width: $breakpoint-desktop-lg) {
       height: 600px;
     }
-
-    @media (max-width: 1000px) {
+    @media (max-width: $breakpoint-desktop) {
       height: 550px;
     }
-
-    @media (max-width: 650px) {
-      height: 450px;
+    @media (max-width: $breakpoint-tablet) {
+      height: 420px;
+    }
+    @media (max-width: $breakpoint-mobile) {
+      height: 300px;
     }
 
     // Small header styles
     &.small {
       margin-bottom: 2rem;
-
-      @media (min-width: 1601px) {
+      @media (min-width: $breakpoint-desktop-xl) {
         height: 400px;
       }
-
-      @media (max-width: 1600px) {
+      @media (max-width: $breakpoint-desktop-lg) {
         height: 380px;
       }
-
-      @media (max-width: 1000px) {
+      @media (max-width: $breakpoint-desktop) {
         height: 360px;
       }
-
-      @media (max-width: 650px) {
+      @media (max-width: $breakpoint-tablet) {
         height: 330px;
         overflow: hidden;
         .header-content {
@@ -256,6 +256,17 @@ const coverImage = cover || `/covers/${coverName}.webp`;
             #cfd7da 1.77%,
             rgba(217, 217, 217, 0) 80.92%
           );
+        }
+      }
+      @media (max-width: $breakpoint-tablet) {
+        height: 240px;
+        .header-content {
+          .title-container {
+            h1 {
+              font-size: 1.8rem;
+              -webkit-line-clamp: 5;
+            }
+          }
         }
       }
     }

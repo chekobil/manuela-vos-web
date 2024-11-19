@@ -1,10 +1,10 @@
 ---
-id: 1276904b-d832-80bc-9c76-fa3b45d3cdb9
-edit: '2024-10-22T10:05:00.000Z'
+id: 1276904b-d832-80dd-bb10-d488bfa69dad
+edit: '2024-11-06T23:14:00.000Z'
 author: MVos Team
 published: '2024-10-20'
-title: "Manuela, el vuelo\_infinito. Kritilo"
-slug: "manuela_el_vuelo\_infinito_kritilo"
+title: Manuela, el vuelo infinito. Kritilo
+slug: manuela_el_vuelo_infinito_kritilo
 layout: ../../layouts/LayoutReading.astro
 header: small
 url: undefined

@@ -1,0 +1,13 @@
+---
+import SponsorList from "../components/SponsorList.astro";
+import Layout from "../layouts/Layout.astro";
+import * as sponsors from "./sponsorsContent/index.md";
+const SponsorsContent = sponsors.Content;
+const title = sponsors.frontmatter.title;
+const header = sponsors.frontmatter.header;
+---
+
+<Layout header={header} title={title} headerTitle={title}>
+  <SponsorsContent />
+  <SponsorList />
+</Layout>

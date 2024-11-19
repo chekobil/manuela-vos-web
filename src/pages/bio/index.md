@@ -7,12 +7,14 @@ title: Quién es Manuela Vos
 slug: index
 layout: ../../layouts/LayoutReading.astro
 header: large
-modified: true
 cover: /images/manu_bio_brazos.webp
 images:
   - /images/manu_bio_brazos.webp
   - /images/manu_bio.webp
 ---
+
+<figure><img src="/images/manu_bio_brazos.webp" alt=""><figcaption align="left"></figcaption></figure>
+
 
 Conoce a Manuela Vos, una apasionada del deporte, la naturaleza y la aventura. 
 

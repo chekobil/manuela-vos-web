@@ -12,7 +12,7 @@ const getHtmlFromEmbedHtmlBlock = (string) => {
 
 export const parseHtmlBlocks = (allBlocks) => {
   const blocks = filterHtmlBlocks(allBlocks);
-  if (!blocks?.length) return allBlocks;
+  if (!blocks?.length) return { blocks: allBlocks };
   blocks.forEach((block) => {
     const parsedBlock = {
       type: "html",
@@ -23,7 +23,7 @@ export const parseHtmlBlocks = (allBlocks) => {
     // console.log("NEW BLOCK::", parsedBlock);
     allBlocks[block.index] = parsedBlock;
   });
-  return allBlocks;
+  return { blocks: allBlocks };
 };
 
 // Iframe directo de RTVE no funciona, el iframe va envuelto en un div, si le quitas el DIV que lo envuelve el src del iframe se convierte en formato markdown y no funciona, pero tampoco funciona en formato bueno, solo se pinta el div que tiene un enlace al audio

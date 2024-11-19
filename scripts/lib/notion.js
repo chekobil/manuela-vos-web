@@ -9,6 +9,10 @@ import * as dotenv from "dotenv";
 dotenv.config();
 // import { dropboxLinksDownloadAndConvert } from "./dropbox.js";
 import { parseHtmlBlocks } from "../notion/htmlBlocks.js";
+import { parseImageBlocks } from "../notion/imageBlocks.js";
+import { parseIframeVideoBlocks } from "../notion/videoIframeBlocks.js";
+import { parseYoutubeBlocks } from "../notion/youtubeBlocks.js";
+import { log } from "console";
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -23,6 +27,13 @@ const addImageToFrontmatter = (frontmatter, url) => {
   frontmatter = JsonToFrontmatter(fmJson);
   return frontmatter;
 };
+const addImageListToFrontmatter = (frontmatter, urls) => {
+  const fmJson = FrontmatterToJson(frontmatter);
+  if (!fmJson.cover) fmJson.cover = urls[0];
+  if (!fmJson.images) fmJson.images = urls;
+  frontmatter = JsonToFrontmatter(fmJson);
+  return frontmatter;
+};
 
 const convertToMD = async (
   pageId,
@@ -31,141 +42,29 @@ const convertToMD = async (
 ) => {
   let removedBlocks = 0;
   const mdblocksRaw = await n2m.pageToMarkdown(pageId);
+  // if (FrontmatterToJson(frontmatter).title.includes("infinito")) {
+  //   console.log("BLOCKS::", mdblocksRaw);
+  // }
+
   let mdblocks = mdblocksRaw.map((block, index) => ({ ...block, index }));
-  // console.log("BLOCKS::", mdblocks);
   // EMBED-HTML BLOCKS
-  mdblocks = parseHtmlBlocks(mdblocks);
+  ({ blocks: mdblocks } = parseHtmlBlocks(mdblocks));
   // IMAGENES
-  // sea cual sea el link, se extrae el nombre de archivo y se cambia la extension a webp
-  // la url es relativa a /, es decir, se espera que las imagenes esten en public, en formato webp
-  const images = mdblocks.filter((b) => b.type === "image");
-  if (images?.length) {
-    images.forEach((block) => {
-      const blockIndex = mdblocks.findIndex((b) => b.parent === block.parent);
-      if (blockIndex >= 0) {
-        const { text, filename, ext } = getMdImageData(block.parent);
-        let newUrl;
-        // console.log("BLOCKS IMAGES ::", filename, ext);
-        if (filename && ext) {
-          const name = filename.replace(ext, "");
-          newUrl = `/images/${name}.webp`;
-          const figure = `<figure><img src="${newUrl}" alt="${
-            text ?? name
-          }"><figcaption align="left">${text}</figcaption></figure>`;
-          mdblocks[blockIndex] = {
-            type: "html",
-            parent: figure,
-            children: [],
-          };
-        }
-        if (newUrl) {
-          frontmatter = addImageToFrontmatter(frontmatter, newUrl);
-        }
-        if (firstImageAsCover && blockIndex == 0) {
-          mdblocks.splice(0, 1);
-          removedBlocks++;
-        }
-      }
-    });
+  let imageUrls = [];
+  ({ blocks: mdblocks, urls: imageUrls } = parseImageBlocks(mdblocks));
+  if (imageUrls?.length) {
+    frontmatter = addImageListToFrontmatter(frontmatter, imageUrls);
   }
-
   // VIDEOS emebidos en un iframe
-  const iframeServices = ["players.brightcove.net"];
-  const embedVideos = mdblocks.filter(
-    (b) =>
-      b.type === "video" && iframeServices.some((srv) => b.parent.includes(srv))
-  );
-  // console.log("EMBED::", embedVideos);
-
-  if (embedVideos?.length) {
-    embedVideos.forEach((block) => {
-      const blockIndex = mdblocks.findIndex((b) => b.parent === block.parent);
-      const { url } = getMdImageData(block.parent, "embed");
-      const iframe = `<iframe src='${url}' allowfullscreen frameborder=0></iframe>`;
-      mdblocks[blockIndex] = {
-        type: "html",
-        parent: iframe,
-        children: [],
-      };
-    });
-  }
-  // DESACTIVADO
-  // LINKS a imagenes en DROPBOX, del tipo https://www.dropbox.com/s/1rr3o5ebisb685i/manu_bio.png?dl=0
-  // es el link que se inserta en Notion y viene como bloque de tipo link_preview
-  // {
-  //   type: 'link_preview',
-  //   parent: '[link_preview](https://www.dropbox.com/s/25lguhvl56sdf2q/manu_bio_brazos.jpg?dl=0)',
-  //   children: []
-  // }
-  // const dropboxLinks = mdblocks.filter(
-  //   (b) => b.type === "link_preview" && b.parent.includes("dropbox.com")
-  // );
-  // if (dropboxLinks?.length) {
-  //   dropboxLinks.forEach((block) => {
-  //     const index = mdblocks.findIndex((b) => b.parent === block.parent);
-  //     if (index >= 0) {
-  //       block.index = index;
-  //     }
-  //   });
-  // }
-  // if (dropboxLinks?.length) {
-  //   const list = dropboxLinks.map((link) => link.parent);
-  //   const newLinks = await dropboxLinksDownloadAndConvert(list);
-  //   dropboxLinks.forEach((link, linkIndex) => {
-  //     // buscalo en los nuevos links, por el parent
-  //     const newL = newLinks.find((nl) => nl.link === link.parent);
-  //     if (newL) {
-  //       // SI EL INDEX es 0, la foto va en el header, no la pintes, debes eliminar el bloque
-  //       // y debes añadir la lista de imagenes al frontmatter
-  //       const blockIndex = mdblocks.findIndex((b) => b.parent === link.parent);
-  //       if (blockIndex >= 0) {
-  //         // el indice ha cambiado, no sirve el que tienes
-  //         mdblocks[blockIndex].type = "image";
-  //         mdblocks[blockIndex].parent = `![](${newL.dest})`;
-  //         delete mdblocks[blockIndex].index;
-  //         // guarda imagenes en el frontmatter
-  //         if (newL.dest) {
-  //           frontmatter = addImageToFrontmatter(frontmatter, newL.dest);
-  //         }
-  //         // dependiendo del flag, elimina el primer bloque de imagen o no
-  //         // solo si es el primer bloque
-  //         if (firstImageAsCover && blockIndex == 0) {
-  //           mdblocks.splice(0, 1);
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
+  ({ blocks: mdblocks } = parseIframeVideoBlocks(mdblocks));
   // VIDEOS youtube
-  const videos = mdblocks.filter(
-    (b) => b.type === "video" && b.parent.includes("youtu")
-  );
-  if (videos?.length) {
-    // console.log("VIDEOS::", videos);
-    videos.forEach((videoBlock) => {
-      const index = mdblocks.findIndex((b) => b.parent === videoBlock.parent);
-      let thumbnail;
-      if (index >= 0) {
-        const { url } = getMdLinkData(videoBlock.parent);
-        if (url) {
-          let videoId = url.split("/").pop();
-          videoId = videoId.split("watch?v=").pop();
-          //console.log("VIDEOID::", videoId)
-          const iFrame = getVideoIframe(videoId);
-          mdblocks[index] = {
-            type: "html",
-            parent: iFrame,
-            children: [],
-          };
-          thumbnail = getVideoThumbnailUrl(videoId);
-        }
-        if (thumbnail) {
-          frontmatter = addImageToFrontmatter(frontmatter, thumbnail);
-        }
-      }
-    });
+  let youtubeUrls = [];
+  ({ blocks: mdblocks, urls: youtubeUrls } = parseYoutubeBlocks(mdblocks));
+  if (youtubeUrls?.length) {
+    frontmatter = addImageListToFrontmatter(frontmatter, youtubeUrls);
   }
+
+  //
   if (mdblocks.length !== mdblocksRaw.length - removedBlocks)
     throw new Error(
       `Error. Parsed blocks must have the same length.
@@ -176,72 +75,6 @@ const convertToMD = async (
   const mdString = n2m.toMarkdownString(mdblocks);
   return frontmatter + mdString;
 };
-
-function getVideoIframe(videoId) {
-  return `<div><iframe src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
-}
-
-function getVideoThumbnailUrl(videoId) {
-  // maxresdefault.jpg :: size: 1280x720
-  // hqdefault.jpg :: size: 480x360
-  // sddefault.jpg :: size: 640x480
-  // mqdefault.jpg :: size: 320x180
-  // default.jpg :: size: 120x90
-  // 0.jpg :: size: 480x360
-  // +++++ :: distintos fotogramas
-  // 1.jpg :: size: 120x90
-  // 2.jpg :: size: 120x90
-  // 3.jpg :: size: 120x90
-  return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
-}
-
-export function getMdImageData(imageLink, type) {
-  const regeximage = /!\[(.*)\]\((.*)\)/;
-  const regexembed = /\[(image)\]\((.*)\)/;
-  let regex = regeximage;
-  if (type === "embed") regex = regexembed;
-  const regexFileName = /[\w\d-]+(.jpg|.jpeg|.png|.webp|.gif)/;
-  const myMatch = imageLink.match(regex);
-  let full, text, url, filename, ext;
-  if (myMatch) {
-    [full, text, url] = myMatch;
-  }
-  let myMatchUrl;
-  if (url) {
-    myMatchUrl = url.match(regexFileName);
-    if (myMatchUrl) {
-      [filename, ext] = myMatchUrl;
-    }
-  }
-  return {
-    full,
-    text,
-    url,
-    filename,
-    ext,
-  };
-}
-
-function getMdLinkData(mdLink) {
-  // TEXT ::  ^(?:\!)*\[([\d\s\wA-zÀ-ú.,()]+)\]
-  // LINKK :: \(((?:\/|https?:\/\/)[\w\d./=-]+)\)$
-  /* Match full links and relative paths */
-  // VALIDO PARA VIDEOS YOUTUBE e IMAGENES
-  //const regex = /^(?:\!)*\[([\d\s\wA-zÀ-ú.,()]+)\]\(((?:\/|https?:\/\/)[\w\d./=-]+)\)$/
-  const regex = /\[(.*)\]\((.*)\)/;
-  const myMatch = mdLink.match(regex);
-  //console.log("image/video::", myMatch)
-  // de-structure the array
-  let full, text, url;
-  if (myMatch) {
-    [full, text, url] = myMatch;
-  }
-  return {
-    full,
-    text,
-    url,
-  };
-}
 
 const checkDir = (dir) => {
   if (fs.existsSync(dir)) return;

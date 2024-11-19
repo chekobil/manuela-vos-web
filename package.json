@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run image:resize && astro dev",
+    "dev:host": "npm run image:resize && astro dev --host",
     "start": "astro dev",
     "test": "jest --testPathPattern=tests/",
     "auth:disable": "bash scripts/disable_auth.sh disable",

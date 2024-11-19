@@ -6,7 +6,6 @@ published: '2023-03-01'
 title: Patrocinadores
 slug: index
 header: large
-modified: true
 ---
 
 La campeona mundial de paraciclismo, Manuela Vos, continúa inspirando con su incansable espíritu deportivo. Tras su destacada participación en los últimos mundiales, Manuela ha puesto su mirada en nuevos desafíos y metas aún más ambiciosas.

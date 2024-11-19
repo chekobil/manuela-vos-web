@@ -5,14 +5,14 @@ import { convertirImagenWebp } from "./lib/images.js";
 import { changeFileExtension, deleteFile } from "./lib/files.js";
 
 const extensions = ["jpg", "jpeg", "png", "gif", "avif"];
-
-const dirCovers = settings.coversFolder;
-const dirImages = settings.imagesDestFolder;
-const filesCovers = fs.readdirSync(path.resolve(dirCovers));
-const filesImages = fs.readdirSync(path.resolve(dirImages));
-const coversObj = filesCovers.map((file) => ({ file: file, dir: dirCovers }));
-const imagesObj = filesImages.map((file) => ({ file: file, dir: dirImages }));
-const allFiles = [...coversObj, ...imagesObj];
+const folders = ["coversFolder", "imagesDestFolder", "sponsorsFolder"];
+const allFiles = [];
+folders.forEach((folder) => {
+  const dir = settings[folder];
+  const files = fs.readdirSync(path.resolve(dir));
+  const obj = files.map((file) => ({ file, dir }));
+  allFiles.push(...obj);
+});
 
 const imageFiles = allFiles.filter((f) => {
   return extensions

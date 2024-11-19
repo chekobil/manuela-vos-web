@@ -66,8 +66,8 @@ export const staticPages = [
     url: "https://www.notion.so/manu-vos-web/Patrocinadores-902dbc9166b14d21a2279d8ecc3c4152?pvs=4",
     notionPageId: "902dbc91-66b1-4d21-a227-9d8ecc3c4152",
     author: "MVos Team",
-    dest: `${baseUrl}/sponsors`,
-    layout: `${layoutsDir}/LayoutReading.astro`,
+    dest: `${baseUrl}/sponsorsContent`,
+    // No tiene layout porque su contenido s epinta dentro de Sponsors.astro
   },
   {
     ref: "Contacto",
@@ -83,5 +83,6 @@ export const settings = {
   dropboxFolder: "/FotosWeb",
   imagesDestFolder: `${publicDir}/images`,
   coversFolder: `${publicDir}/covers`,
+  sponsorsFolder: `${publicDir}/sponsors`,
   appendTitle: "Manuela Vos",
 };
